@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Header.scss'
 
 class Header extends Component {
   constructor() {
@@ -8,9 +8,9 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header className="header">
         <h1>Perished Durians</h1>
-        <button>Log In</button>
+        <button className="login-button">Log In</button>
       </header>
     )
   }
