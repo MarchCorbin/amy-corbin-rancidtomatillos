@@ -12,6 +12,10 @@ class Login extends React.Component {
     }
   }
 
+  clearInputs= () => {
+    this.setState({email: '', password: ''})
+  }
+
   changeHandler = (e) => {
    const inputName =  e.target.name
    this.setState({[inputName]: e.target.value})
@@ -23,6 +27,7 @@ class Login extends React.Component {
     postLogin(loginEmail, loginPassword)
      .then(data => this.props.setCurrentUser(data))
        .catch(err => console.log(err))
+       this.clearInputs()
     
   }
 
