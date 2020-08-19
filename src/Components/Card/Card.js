@@ -4,12 +4,12 @@ import './Card.scss'
 
 function Card({allMovies}) {
   let eachMovie;
-  console.log('zine', allMovies)
+
   // return allMovies;
   // if (allMovies !== undefined) { 
     if (allMovies.length) {
     eachMovie = allMovies.map(movie => {
-    console.log('here', movie)  
+
     return (
       <div className="movie-card">
         <p>{movie.title}</p>
