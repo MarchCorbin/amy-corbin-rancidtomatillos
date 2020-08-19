@@ -1,8 +1,11 @@
 import React from 'react'
+import { postLogin } from '../../Api.js'
+import './Login.scss'
+
 
 class Login extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       email: '',
       password: ''
@@ -15,29 +18,34 @@ class Login extends React.Component {
   }
 
   submitHandler = (e) => {
+    const loginEmail = this.state.email
+    const loginPassword = this.state.password
+    postLogin(loginEmail, loginPassword)
+     .then(data => this.props.setCurrentUser(data))
+       .catch(err => console.log(err))
     
   }
 
 
   render() {
     return(
-      <section>
+      <section className='login-form'>
       <input
-      type='text'
-      placeholder="Email"
-      name="email"
-      onChange={this.changeHandler}
-      value={this.state.email}
+        type='text'
+        placeholder="Email"
+        name="email"
+        onChange={this.changeHandler}
+        value={this.state.email}
       />
 
       <input
-      type='password'
-      placeholder="Password"
-      name="password"
-      onChange={this.changeHandler}
-      value={this.state.password}
+        type='password'
+        placeholder="Password"
+        name="password"
+        onChange={this.changeHandler}
+        value={this.state.password}
       />
-      <button onSubmit={this.submitHandler}>Submit</button>
+      <button onClick={this.submitHandler}>Submit</button>
       </section>
     )
   }
