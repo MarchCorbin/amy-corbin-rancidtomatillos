@@ -8,7 +8,8 @@ class Login extends React.Component {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
@@ -28,7 +29,6 @@ class Login extends React.Component {
      .then(data => this.props.setCurrentUser(data))
        .catch(err => console.log(err))
        this.clearInputs()
-    
   }
 
 

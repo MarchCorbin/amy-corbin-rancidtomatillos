@@ -5,6 +5,7 @@ import Header from './Components/Header/Header.js';
 import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
 import { postLogin, fetchUserMovieRatings } from './Api.js'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +18,7 @@ class App extends React.Component {
   }
 
 setCurrentUser = (data) => {
-console.log(data, 'WEMADEIT')
+
     this.setState({ userId: data.user.id })
     this.getUserMovieRatings()
 }
@@ -31,9 +32,15 @@ fetchUserMovieRatings(id)
   render() {
     return (
       <main>
-        <Login setCurrentUser={this.setCurrentUser} />
-        {/* <Header />
-        <Movies /> */}
+        <BrowserRouter>
+        <Route path='/login' >
+          <Login setCurrentUser={this.setCurrentUser} />
+          </Route>
+          <Route exact path='/'>
+            <Header />
+            <Movies />
+          </Route>
+        </BrowserRouter>
       </main>
     );
   }

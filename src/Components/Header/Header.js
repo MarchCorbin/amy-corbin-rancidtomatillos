@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Header.scss'
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class Header extends Component {
     return (
       <header className="header">
         <h1>Perished Durians</h1>
-        <button className="login-button">Log In</button>
+        <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
       </header>
     )
   }
