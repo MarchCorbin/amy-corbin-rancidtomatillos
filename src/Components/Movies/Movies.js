@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { fetchAllMovies } from '../../Api'
 import Card from '../Card/Card'
+import './Movies.scss'
 
 class Movies extends Component {
   constructor() {
