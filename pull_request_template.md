@@ -17,6 +17,21 @@ Were there any challenges that arose while implementing this feature? If so, how
 Files modified:
 - [ ] index.html
 - [ ] styles.css
-- [ ] scripts.js
-
-Other files:
+- [ ] App.js
+- [ ] Form.js
+- [ ] Card.js
+- [ ] Movies.js
+- [ ] Api.js
+- [ ] App-test.js
+- [ ] Form-test.js
+- [ ] Card-test.js
+- [ ] Movies-test.js
+- [ ] Api-test.js
+- [ ] Form.scss
+- [ ] Card.scss
+- [ ] Movies.scss
+- [ ] index.js
+- [ ] Header.js
+- [ ] Header.scss
+- [ ] 
+- [ ] 

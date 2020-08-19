@@ -1,0 +1,17 @@
+.movie-card {
+  
+  display: inline-block;
+  padding: 1em 1em 1em 1em;
+  
+  // display: grid;
+  // margin-top: 12px;
+  // grid-gap: 35px;
+  // width: 100%;
+  // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+img {
+  object-fit: contain;
+  max-width: 20em;
+  height: auto;
+}
