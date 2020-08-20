@@ -1,17 +1,34 @@
 .movie-card {
-  
   display: inline-block;
   padding: 1em 1em 1em 1em;
-  
-  // display: grid;
-  // margin-top: 12px;
-  // grid-gap: 35px;
-  // width: 100%;
-  // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 img {
   object-fit: contain;
   max-width: 20em;
   height: auto;
+}
+
+.movies-section {
+  display: grid;
+  grid-gap: 35px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  background: chartreuse;
+}
+
+.movie-titles {
+  font-weight: 900;
+  font-size: 1.4em;
+  font-family: 'Arimo',
+  sans-serif;
+  margin: 3px;
+}
+
+.card-text {
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Arimo',
+  sans-serif;
+  margin: 3px;
 }
