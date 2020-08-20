@@ -28,7 +28,7 @@ class Login extends React.Component {
     postLogin(loginEmail, loginPassword)
      .then(data => this.props.setCurrentUser(data))
        .catch(err => console.log(err))
-       this.clearInputs()
+      .then(() => this.clearInputs())
   }
 
 
