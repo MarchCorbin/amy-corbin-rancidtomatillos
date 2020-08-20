@@ -1,12 +1,3 @@
-.movies-container {
-  display: grid;
-  margin-top: 12px;
-  grid-gap: 35px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-
 img {
-  
   height: 18em;
 }

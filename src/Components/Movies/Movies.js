@@ -19,7 +19,6 @@ class Movies extends Component {
 
   setMovieState(data) {
     this.setState({allMovies: data})
-    // console.log("gotit", this.state.allMovies)
   }
 
   render() {

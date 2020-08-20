@@ -12,15 +12,18 @@ function Card({allMovies}) {
 
     return (
       <div className="movie-card">
-        <p>{movie.title}</p>
-        <img src={movie.poster_path}></img>
-        <p>{movie.average_rating}</p>
-        <p>{movie.release_date}</p>
+        {movie.title.length > 25 ? 
+                <p className='movie-titles'>{movie.title.slice(0, 18)}...</p> : 
+                <p className='movie-titles'>{movie.title}</p> }
+        {/* <p className="movie-titles">{movie.title}</p> */}
+        <img src={movie.poster_path} alt={movie.title}></img>
+        <p className="card-text">Avg Rating: {movie.average_rating}</p>
+        <p className="card-text">Release Date: {movie.release_date}</p>
       </div>
     )
   })
       }
-    return <h1>{eachMovie}</h1>
+    return <div className="movies-section">{eachMovie}</div>
 }
 
 
