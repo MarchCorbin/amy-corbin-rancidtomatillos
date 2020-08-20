@@ -18,9 +18,8 @@ class App extends React.Component {
   }
 
 setCurrentUser = (data) => {
-
-    this.setState({ userId: data.user.id })
-    this.getUserMovieRatings()
+  this.setState({ currentUser: data.user.name, userId: data.user.id })
+  this.getUserMovieRatings()
 }
 
 getUserMovieRatings = () => {
