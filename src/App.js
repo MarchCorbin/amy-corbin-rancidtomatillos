@@ -13,23 +13,33 @@ class App extends React.Component {
     this.state = {
       currentUser: '',
       userId: 0,
-      userRatings: []
+      userRatings: [],
+      isLoggedIn: false
     }
   }
 
 setCurrentUser = (data) => {
-  this.setState({ currentUser: data.user.name, userId: data.user.id })
+  this.setState({ currentUser: data.user.name, userId: data.user.id, isLoggedIn: true})
   this.getUserMovieRatings()
   // console.log('current', this.state.currentUser)
 }
 
 getUserMovieRatings = () => {
-let id = this.state.userId
-fetchUserMovieRatings(id)
-.then(data => this.setState({userRatings: data.ratings }))
+  let id = this.state.userId
+  fetchUserMovieRatings(id)
+  .then(data => this.setState({userRatings: data.ratings }))
+}
+
+changingMessage = () => {
+  if (this.state.isLoggedIn) {
+    return <h2>Welcome {this.state.currentUser}</h2>
+  } else {
+    return <h2>Welcome</h2>
+  }
 }
 
   render() {
+    let personalizedMessage = this.changingMessage();
     return (
       <main>
         <BrowserRouter>
@@ -38,7 +48,7 @@ fetchUserMovieRatings(id)
           <Login setCurrentUser={this.setCurrentUser} />
           </Route>
           <Route exact path='/'>
-            <Header currentUser={this.state.currentUser}/>
+            <Header changingMessage={personalizedMessage}/>
             <Movies />
           </Route>
         </BrowserRouter>
@@ -46,5 +56,8 @@ fetchUserMovieRatings(id)
     );
   }
 }
+// this.changing message would have 2 tests, if stae is logged in and h2 w cuureent users name returened and isState logged in is flase straight welcome
+// dont have to call compdidm, when page renders, data should be there (like constructor)
+// mock fetch
 
 export default App;

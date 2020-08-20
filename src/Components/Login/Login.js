@@ -36,8 +36,7 @@ class Login extends React.Component {
 
   render() {
     return(
-      <section className='login-form-container'>
-    <form id="login-form" id="login-form-input" aria-label="user login">
+      <section className='login-form-container'id="login-form">
       <input id="username-input" aria-label="username input" class="login-input" type="username" placeholder="Username" name="email"
         onChange={this.changeHandler}
         value={this.state.email}
@@ -48,7 +47,6 @@ class Login extends React.Component {
       />
       <button class="submit-button" onClick={this.submitHandler}>Submit</button>
       {this.state.isValid && <Redirect to="/" />}
-      </form>
       </section>
     )
   }

@@ -6,6 +6,9 @@ class Header extends Component {
   constructor(props) {
     super(props)
     console.log(this.props, 'props')
+    this.state = {
+      user: ''
+    }
   }
 
   render() {
@@ -13,6 +16,7 @@ class Header extends Component {
       <header className="header">
         <h1>Perished Durians</h1>
         <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
+    <section>{this.props.changingMessage}</section>
       </header>
     )
   }
