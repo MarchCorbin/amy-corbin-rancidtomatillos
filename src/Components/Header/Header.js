@@ -7,7 +7,7 @@ class Header extends Component {
     super(props)
     console.log(this.props, 'props')
   }
-  
+
   render() {
     return (
       <header className="header">
