@@ -1,7 +1,7 @@
 import React from 'react'
 import { postLogin } from '../../Api.js'
 import './Login.scss'
-
+import { withRouter, Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: ''
+      error: '',
+      isValid: false
     }
   }
 
@@ -28,31 +29,29 @@ class Login extends React.Component {
     postLogin(loginEmail, loginPassword)
      .then(data => this.props.setCurrentUser(data))
        .catch(err => console.log(err))
-       this.clearInputs()
+      .then(() => this.clearInputs())
+      .then(this.setState({isValid: true}))
   }
 
 
   render() {
     return(
-      <section className='login-form'>
-      <input
-        type='text'
-        placeholder="Email"
-        name="email"
+      <section className='login-form-container'>
+    <form id="login-form" id="login-form-input" aria-label="user login">
+      <input id="username-input" aria-label="username input" class="login-input" type="username" placeholder="Username" name="email"
         onChange={this.changeHandler}
         value={this.state.email}
       />
-      <input
-        type='password'
-        placeholder="Password"
-        name="password"
+      <input id="password-input" aria-label="password" class="login-input" type="password" placeholder="Password" name="password"
         onChange={this.changeHandler}
         value={this.state.password}
       />
-      <button onClick={this.submitHandler}>Submit</button>
+      <button class="submit-button" onClick={this.submitHandler}>Submit</button>
+      {this.state.isValid && <Redirect to="/" />}
+      </form>
       </section>
     )
   }
 }
 
-export default Login
+export default withRouter (Login)

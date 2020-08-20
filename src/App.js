@@ -18,9 +18,9 @@ class App extends React.Component {
   }
 
 setCurrentUser = (data) => {
-
-    this.setState({ userId: data.user.id })
-    this.getUserMovieRatings()
+  this.setState({ currentUser: data.user.name, userId: data.user.id })
+  this.getUserMovieRatings()
+  // console.log('current', this.state.currentUser)
 }
 
 getUserMovieRatings = () => {
@@ -34,10 +34,11 @@ fetchUserMovieRatings(id)
       <main>
         <BrowserRouter>
         <Route path='/login' >
+          <Header />
           <Login setCurrentUser={this.setCurrentUser} />
           </Route>
           <Route exact path='/'>
-            <Header />
+            <Header currentUser={this.state.currentUser}/>
             <Movies />
           </Route>
         </BrowserRouter>
