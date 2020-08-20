@@ -1,7 +1,7 @@
 import React from 'react'
 import { postLogin } from '../../Api.js'
 import './Login.scss'
-
+import { withRouter, Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: ''
+      error: '',
+      isValid: false
     }
   }
 
@@ -29,6 +30,7 @@ class Login extends React.Component {
      .then(data => this.props.setCurrentUser(data))
        .catch(err => console.log(err))
       .then(() => this.clearInputs())
+      .then(this.setState({isValid: true}))
   }
 
 
@@ -50,9 +52,10 @@ class Login extends React.Component {
         value={this.state.password}
       />
       <button onClick={this.submitHandler}>Submit</button>
+      {this.state.isValid && <Redirect to="/" />}
       </section>
     )
   }
 }
 
-export default Login
+export default withRouter (Login)
