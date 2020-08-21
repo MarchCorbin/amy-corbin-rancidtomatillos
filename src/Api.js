@@ -10,6 +10,11 @@ export const fetchAllMovies = () => {
   })
 }
 
+export const fetchSingleMovieDetails = (movieId) => {
+return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieId}`)
+.then(res => res.json())
+}
+
 export const fetchUserMovieRatings = (id) => {
 return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
 .then(res => res.json())

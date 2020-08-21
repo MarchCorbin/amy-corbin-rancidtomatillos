@@ -48,7 +48,9 @@ changingMessage = () => {
           <Header />
           <Login setCurrentUser={this.setCurrentUser} />
           </Route>
-          <Route path='/movies/:id'><MovieInfo /></Route>
+          <Route path='/movies/:id' 
+          render={(props) => <MovieInfo {...props} />} />
+          
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage}/>
             <Movies />
