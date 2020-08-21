@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header/Header.js';
 import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
+import MovieInfo from './Components/MovieInfo/MovieInfo'
 import { postLogin, fetchUserMovieRatings } from './Api.js'
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -47,6 +48,7 @@ changingMessage = () => {
           <Header />
           <Login setCurrentUser={this.setCurrentUser} />
           </Route>
+          <Route path='/movies/:id'><MovieInfo /></Route>
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage}/>
             <Movies />
