@@ -37,15 +37,15 @@ class Login extends React.Component {
   render() {
     return(
       <section className='login-form-container'id="login-form">
-      <input id="username-input" aria-label="username input" class="login-input" type="username" placeholder="Username" name="email"
+      <input id="username-input" aria-label="username input" className="login-input" type="username" placeholder="Username" name="email"
         onChange={this.changeHandler}
         value={this.state.email}
       />
-      <input id="password-input" aria-label="password" class="login-input" type="password" placeholder="Password" name="password"
+      <input id="password-input" aria-label="password" className="login-input" type="password" placeholder="Password" name="password"
         onChange={this.changeHandler}
         value={this.state.password}
       />
-      <button class="submit-button" onClick={this.submitHandler}>Submit</button>
+      <button className="submit-button" onClick={this.submitHandler}>Submit</button>
       {this.state.isValid && <Redirect to="/" />}
       </section>
     )
