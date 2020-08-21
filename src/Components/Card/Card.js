@@ -1,29 +1,16 @@
 import React from 'react'
 import './Card.scss'
+import { Link } from 'react-router-dom'
 
-
-function Card({allMovies}) {
-  let eachMovie;
-
-  // return allMovies;
-  // if (allMovies !== undefined) { 
-    if (allMovies.length) {
-    eachMovie = allMovies.map(movie => {
-
-    return (
-      <div className="movie-card">
-        {movie.title.length > 25 ? 
-                <p className='movie-titles'>{movie.title.slice(0, 18)}...</p> : 
-                <p className='movie-titles'>{movie.title}</p> }
-        {/* <p className="movie-titles">{movie.title}</p> */}
-        <img src={movie.poster_path} alt={movie.title}></img>
-        <p className="card-text">Avg Rating: {movie.average_rating}</p>
-        <p className="card-text">Release Date: {movie.release_date}</p>
-      </div>
-    )
-  })
-      }
-    return <div className="movies-section">{eachMovie}</div>
+function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop}) {
+  return (
+    <div className = "movie-card" >
+   {movieTitle.length > 25 ? <p className='movie-titles'>{movieTitle.slice(0, 18)}...</p> : <p className='movie-titles'>{movieTitle}</p> }
+   <Link to={`/movies/${movieId}`}><img id={movieId} src={moviePoster} alt={movieTitle}></img></Link>
+    <p className="card-text">Avg Rating: {movieRating}</p>
+    <p className="card-text">Release Date: {releaseDate}</p>
+    </div>
+  )
 }
 
 
