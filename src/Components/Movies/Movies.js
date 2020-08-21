@@ -36,23 +36,6 @@ class Movies extends Component {
     }
   }
 
-  // function displayAllMovies() {
-  //   if (allMovies.length) {
-  //   return allMovies.map(movie => {
-  //   return (
-  //     <div className="movie-card">
-  //       {movie.title.length > 25 ? 
-  //         <p className='movie-titles'>{movie.title.slice(0, 18)}...</p> : 
-  //         <p className='movie-titles'>{movie.title}</p> }
-  //       <img id={movie.id} src={movie.poster_path} alt={movie.title}></img>
-  //       <p className="card-text">Avg Rating: {movie.average_rating}</p>
-  //       <p className="card-text">Release Date: {movie.release_date}</p>
-  //     </div>
-  //   )
-  //   })
-  //     }
-  //   }
-  //   return <div className="movies-section">{displayAllMovies()}</div>
 
   render() {
     return (
