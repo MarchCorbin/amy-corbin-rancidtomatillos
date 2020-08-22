@@ -40,8 +40,13 @@ changingMessage = () => {
   }
 }
 
+logOutUser = () => {
+  this.state.isLoggedIn &&
+  this.setState({currentUser:'', userId: 0, userRatings:[], isLoggedIn: false})
+}
+
 toggleButton = () => {
-  return this.state.isLoggedIn ? <button className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
+  return this.state.isLoggedIn ? <button onClick={this.logOutUser} className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
 }
 
 changeValid() {
