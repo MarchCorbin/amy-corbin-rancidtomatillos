@@ -40,6 +40,13 @@ class MovieInfo extends React.Component {
     return (
       <main>
         <Header />
+
+        <section className="indv-movie">
+          <h1 className="title" data-testid="movie-title">{this.state.title}</h1>
+          <h2 className="release">{this.state.release_date}</h2>
+        <section className="back-drop">
+          <img className="back-img" src={this.state.backdrop_path} alt={this.state.title}></img>
+
         <section className="back-drop" style={{backgroundImage: `url(${this.state.backdrop_path})`}}>
           <div className="title-container">
           <h1 className="title descrip-text">{this.state.title}</h1>
@@ -53,6 +60,7 @@ class MovieInfo extends React.Component {
           <p className="descrip-text small">Genres: {this.state.genres.map(gen => gen)}</p>
           <p className="descrip-text small">Runtime: {this.state.runtime}</p>
           </div>
+
           </section>
       </main>
     )
