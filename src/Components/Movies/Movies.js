@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchAllMovies } from '../../Api'
 import Card from '../Card/Card'
 import './Movies.scss'
+import PropTypes from 'prop-types'
 
 class Movies extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class Movies extends Component {
   componentDidMount() {
     fetchAllMovies()
     .then(data => {this.setMovieState(data.movies)})
-    .catch(error => console.log(error))
+    .catch(error => alert(error.message))
   }
 
   setMovieState(data) {
@@ -48,3 +49,7 @@ class Movies extends Component {
 }
 
   export default Movies;
+
+  Movies.propTypes = {
+allMovies: PropTypes.array.isRequired
+  }

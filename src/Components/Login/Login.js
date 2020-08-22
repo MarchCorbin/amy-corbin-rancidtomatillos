@@ -2,6 +2,7 @@ import React from 'react'
 import { postLogin } from '../../Api.js'
 import './Login.scss'
 import { withRouter, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class Login extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: '',
       isValid: false
     }
   }
@@ -53,3 +53,10 @@ class Login extends React.Component {
 }
 
 export default Login
+
+Login.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  isValid: PropTypes.bool.isRequired
+
+}
