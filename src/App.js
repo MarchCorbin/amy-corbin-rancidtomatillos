@@ -33,7 +33,6 @@ getUserMovieRatings = () => {
 
 changingMessage = () => {
   if (this.state.isLoggedIn) {
-    this.changeValid()
     return <h2>Welcome {this.state.currentUser}</h2>
   } else {
     return <h2>Welcome</h2>
@@ -49,9 +48,7 @@ toggleButton = () => {
   return this.state.isLoggedIn ? <button onClick={this.logOutUser} className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
 }
 
-changeValid() {
- return true
-}
+
 
   render() {
     let personalizedMessage = this.changingMessage();
@@ -63,7 +60,9 @@ changeValid() {
           <Login setCurrentUser={this.setCurrentUser} />
           </Route>
           <Route path='/movies/:id' 
-          render={(props) => <MovieInfo {...props} />} />
+          render={(props) =>
+          <MovieInfo changingMessage={personalizedMessage} toggleButton={this.toggleButton()}  {...props} />} 
+          />
           
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />

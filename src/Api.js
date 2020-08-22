@@ -4,9 +4,7 @@ export const fetchAllMovies = () => {
   .then(response => {
     if (response.ok) {
       return response.json()
-    } else {
-      throw new Error("error, please try again")
-    }
+    } 
   })
 }
 

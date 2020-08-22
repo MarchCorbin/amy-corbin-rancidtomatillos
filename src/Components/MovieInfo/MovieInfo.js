@@ -2,6 +2,7 @@ import React from 'react'
 import './MovieInfo.scss'
 import { fetchSingleMovieDetails } from '../../Api.js'
 import Header from '../Header/Header'
+import PropTypes from 'prop-types'
 
 class MovieInfo extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class MovieInfo extends React.Component {
     this.setState({ id: movieId });
     fetchSingleMovieDetails(movieId)
       .then((data) => this.getAllData(data.movie))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   }
 
   getAllData(data) {
@@ -49,7 +50,7 @@ class MovieInfo extends React.Component {
   render() {
     return (
       <main>
-        <Header />
+        <Header changingMessage={this.props.changingMessage} toggleButton={this.props.toggleButton} />
         <section
           className="back-drop"
           style={{ backgroundImage: `url(${this.state.backdrop_path})` }}
@@ -80,3 +81,17 @@ class MovieInfo extends React.Component {
 
 export default MovieInfo
 
+MovieInfo.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  backdrop_path: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  budget: PropTypes.number.isRequired,
+  revenue: PropTypes.number.isRequired,
+  runtime: PropTypes.number.isRequired,
+  tagline: PropTypes.string.isRequired,
+  average_rating: PropTypes.number.isRequired
+}
