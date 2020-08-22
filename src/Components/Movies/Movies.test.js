@@ -32,7 +32,6 @@ describe('Movie Component', () => {
     const movies1 = screen.getByPlaceholderText('mov-card')
     const movies2 = screen.getByPlaceholderText('mov-card')
     expect(movies1).toBeInTheDocument()
-    debugger
     expect(movies2).toBeInTheDocument()
   })
 })

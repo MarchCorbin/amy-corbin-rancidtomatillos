@@ -41,7 +41,7 @@ class MovieInfo extends React.Component {
       <main>
         <Header />
         <section className="indv-movie">
-          <h1 className="title">{this.state.title}</h1>
+          <h1 className="title" data-testid="movie-title">{this.state.title}</h1>
           <h2 className="release">{this.state.release_date}</h2>
         <section className="back-drop">
           <img className="back-img" src={this.state.backdrop_path} alt={this.state.title}></img>
