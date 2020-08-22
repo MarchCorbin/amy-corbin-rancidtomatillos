@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom'
 class Header extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props, 'props')
     this.state = {
-      user: ''
+      user: '',
+      loggedIn: false
     }
   }
+
+  
 
   render() {
     return (
       <header className="header">
-        <h1>Perished Durians</h1>
-        <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
+        <Link to='/'><h1>Perished Durians</h1></Link>
+       {this.props.toggleButton}
     <section>{this.props.changingMessage}</section>
       </header>
     )

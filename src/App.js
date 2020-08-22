@@ -6,7 +6,7 @@ import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
 import MovieInfo from './Components/MovieInfo/MovieInfo'
 import { postLogin, fetchUserMovieRatings } from './Api.js'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -33,10 +33,19 @@ getUserMovieRatings = () => {
 
 changingMessage = () => {
   if (this.state.isLoggedIn) {
+    this.changeValid()
     return <h2>Welcome {this.state.currentUser}</h2>
   } else {
     return <h2>Welcome</h2>
   }
+}
+
+toggleButton = () => {
+  return this.state.isLoggedIn ? <button className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
+}
+
+changeValid() {
+ return true
 }
 
   render() {
@@ -52,7 +61,7 @@ changingMessage = () => {
           render={(props) => <MovieInfo {...props} />} />
           
           <Route exact path='/'>
-            <Header changingMessage={personalizedMessage}/>
+            <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Movies />
           </Route>
         </BrowserRouter>
