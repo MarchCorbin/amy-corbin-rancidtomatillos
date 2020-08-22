@@ -38,9 +38,10 @@ class Movies extends Component {
 
 
   render() {
+    let moviesDisplay = this.displayAllMovies();
     return (
-      <section className="movies-container">
-        {this.displayAllMovies()}
+      <section className="movies-container" placeholder="mov-card">
+        {moviesDisplay}
       </section>
     ) 
   }
