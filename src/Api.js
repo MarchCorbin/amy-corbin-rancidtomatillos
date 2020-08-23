@@ -38,3 +38,22 @@ export const postLogin = (email, password) => {
     }
   })
 }
+
+export const postUserRating = async (userId, id, rating) => {
+  let movRating = parseInt(rating)
+  console.log("nn", movRating)
+  return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`,
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "movie_id": id,
+    "rating": Number(rating)
+  })
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+
+}

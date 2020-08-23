@@ -3,6 +3,7 @@ import './MovieInfo.scss'
 import { fetchSingleMovieDetails } from '../../Api.js'
 import Header from '../Header/Header'
 import PropTypes from 'prop-types'
+import Rating from '../Rating/Rating'
 
 class MovieInfo extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class MovieInfo extends React.Component {
           <div className="title-container">
             <h1 className="title descrip-text">{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
+            <Rating movieId={this.state.id} userId={this.props.userId}/>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating}
             </p>
