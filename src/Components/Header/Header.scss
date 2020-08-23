@@ -1,14 +1,90 @@
+.headerContainer {
+  display: flex;
+}
+
 .header {
   height: 10%;
   background-color: #C9F05D;
   width: auto;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
   font-family: 'Denk One',
-  sans-serif;
+    sans-serif;
 }
 
-.login-button{
-  height: 5%;
-  margin-left: 20em;
+.header-message {
+  padding-left: 5em;
+  color: green;
 }
+
+.title-name {
+  color: green;
+}
+
+.link-name {
+  display: flex;
+  justify-content:space-around;
+  text-decoration: none;
+}
+
+ .img-durian {
+  height: 5.2em;
+}
+
+.login-b {
+  color:purple;
+  background-color: transparent;
+  align-self: center;
+  // height: 21%;
+  margin-left: 20em;
+  border-radius: 6px;
+  margin: 2em;
+  // box-shadow: 0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+
+}
+
+.login-button {
+  color:purple;
+  background-color: transparent;
+  align-self: center;
+  height: 41%;
+  margin-left: 20em;
+  border-radius: 6px;
+  margin: 2em;
+  box-shadow: 0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+
+}
+
+// .header-button {
+//   // height: 5em;
+//   // padding-top: 1.8em;
+//   // padding-right: 2em;
+//   align-self: center;
+//   width: 5%;
+//   margin: 1em;
+//   padding: 1em;
+//   border: 1px solid black;
+//   border-radius: 7px;
+//   background-color: white;
+//   // color: black;
+//   font-size: 10px;
+// }
+
+// .login-button{
+//   // display: flex;
+//   height: 5%;
+//   margin-left: 20em;
+// }
+
+// .header {
+//   height: 10%;
+//   background-color: #C9F05D;
+//   width: auto;
+//   display: flex;
+//   justify-content: space-evenly;
+//   font-family: 'Denk One',
+//   sans-serif;
+// }
+

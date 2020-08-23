@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Header.scss'
 import { Link } from 'react-router-dom'
+import durian from "../../Assets/durianlogo.png"
 
 class Header extends Component {
   constructor(props) {
@@ -13,11 +14,13 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="header">
-        <Link to='/'><h1>Perished Durians</h1></Link>
-       {this.props.toggleButton}
-    <section>{this.props.changingMessage}</section>
-      </header>
+      <section className="header-container">
+        <header className="header">
+        <section className="header-message">{this.props.changingMessage}</section>
+          <Link className="link-name" to='/'><h1 className="title-name">Perished Durians</h1><img className="img-durian" alt="durian" src={durian}/></Link>
+        <section className="login-b">{this.props.toggleButton}</section>
+        </header>
+      </section>
     )
   }
 }
