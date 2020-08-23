@@ -33,7 +33,7 @@ getUserMovieRatings = () => {
 
 changingMessage = () => {
   if (this.state.isLoggedIn) {
-    return <h2>Welcome {this.state.currentUser}</h2>
+    return <h2>Welcome, {this.state.currentUser}!</h2>
   } else {
     return <h2>Welcome</h2>
   }
