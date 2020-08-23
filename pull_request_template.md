@@ -33,5 +33,12 @@ Files modified:
 - [ ] index.js
 - [ ] Header.js
 - [ ] Header.scss
-- [ ] 
-- [ ] 
+- [ ] MovieInfo.js
+- [ ] MovieInfo.test.js
+- [ ] MovieInfo.scss
+- [ ] Rating.js
+- [ ] Rating.test.js
+- [ ] Rating.scss
+- [ ] Login.js
+- [ ] Login.scss
+- [ ] Login.test.js
