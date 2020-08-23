@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header/Header.js';
 import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
+
 import MovieInfo from './Components/MovieInfo/MovieInfo'
 import { postLogin, fetchUserMovieRatings } from './Api.js'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
@@ -61,7 +62,7 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo changingMessage={personalizedMessage} toggleButton={this.toggleButton()}  {...props} />} 
+          <MovieInfo changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
           />
           
           <Route exact path='/'>
