@@ -20,15 +20,19 @@ class App extends React.Component {
     }
   }
 
-setCurrentUser = (data) => {
+setCurrentUser = async(data) => {
   this.setState({ currentUser: data.user.name, userId: data.user.id, isLoggedIn: true})
-  this.getUserMovieRatings()
+  await this.getUserMovieRatings()
   // console.log('current', this.state.currentUser)
 }
 
-getUserMovieRatings = () => {
+componentDidUpdate = (prevProps) => {
+  prevProps.userRatings !== this.props.userRatings && this.setState({userRatings: this.state.userRatings})
+}
+
+getUserMovieRatings = async() => {
   let id = this.state.userId
-  fetchUserMovieRatings(id)
+  await fetchUserMovieRatings(id)
   .then(data => this.setState({userRatings: data.ratings }))
 }
 
@@ -39,6 +43,7 @@ changingMessage = () => {
     return <h2>Welcome</h2>
   }
 }
+
 
 logOutUser = () => {
   this.state.isLoggedIn &&
@@ -51,8 +56,12 @@ toggleButton = () => {
 
 
 
-  render() {
+  render = () => {
+    let ratings;
+    if(this.state.userRatings.length){ratings = this.state.userRatings}
     let personalizedMessage = this.changingMessage();
+    console.log(this.state.userRatings, 'thisisratings')
+
     return (
       <main>
         <BrowserRouter>
@@ -62,12 +71,14 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
+          <MovieInfo getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
           />
           
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
-            <Movies />
+            <Movies userRatings={this.state.userRatings} />
+          
+  
           </Route>
         </BrowserRouter>
       </main>

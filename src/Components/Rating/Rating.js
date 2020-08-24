@@ -18,6 +18,7 @@ class Rating extends React.Component {
     let userId = this.props.userId
     this.setState({rating: nextValue});
     postUserRating(userId, id, nextValue)
+    this.props.getUserMovieRatings()
   }
  
   render() {
