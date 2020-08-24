@@ -13,12 +13,12 @@ class Rating extends React.Component {
     };
   }
  
-  onStarClick(nextValue, prevValue, name) {
+  onStarClick = async(nextValue, prevValue, name) => {
     let id = this.props.movieId
     let userId = this.props.userId
     this.setState({rating: nextValue});
-    postUserRating(userId, id, nextValue)
-    this.props.getUserMovieRatings()
+    await postUserRating(userId, id, nextValue)
+     this.props.getUserMovieRatings()
   }
  
   render() {

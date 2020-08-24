@@ -8,8 +8,7 @@ class Movies extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      allMovies: [],
-      userRatings: [], 
+      allMovies: []
 // perhaps have a islogged in attribute to conditionally render on the componentdidmount
     }
   }
@@ -33,7 +32,7 @@ class Movies extends Component {
   }
 
   displayAllMovies() {
-    if (this.state.allMovies.length && !this.state.userRatings.length) {
+    if (this.state.allMovies.length && !this.props.userRatings.length) {
       return this.state.allMovies.map(movie => {
         return <Card
           movieTitle={movie.title}
@@ -47,7 +46,7 @@ class Movies extends Component {
       })
     } else {
       return this.state.allMovies.map(movie => {
-       let userRating = this.state.userRatings.find(rating => rating.movie_id === movie.id)
+       let userRating = this.props.userRatings.find(rating => rating.movie_id === movie.id)
        if (userRating === undefined) {userRating = 'Nothing here yet'}
         return <Card
           movieTitle={movie.title}
