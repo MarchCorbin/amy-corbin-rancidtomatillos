@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { fetchSingleMovieDetails } from '../../Api.js'
 import MovieInfo from '../MovieInfo/MovieInfo'
 
-function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop}) {
+function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating}) {
 
   return (
     <div className = "movie-card" placeholder="mov-card">
@@ -20,6 +20,8 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
     </Link>
     <p className="card-text">Avg Rating: {movieRating}</p>
     <p className="card-text">Release Date: {releaseDate}</p>
+    {console.log(userRating)}
+  {userRating !== undefined ? <p>Your Rating: {userRating}</p> : <p>not yet rated</p>}
     </div>
   )
 }

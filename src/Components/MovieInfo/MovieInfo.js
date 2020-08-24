@@ -32,6 +32,8 @@ class MovieInfo extends React.Component {
       .catch((err) => alert(err.message));
   }
 
+
+
   getAllData(data) {
     this.setState({
       title: data.title,
@@ -58,8 +60,9 @@ class MovieInfo extends React.Component {
         >
           <div className="title-container">
             <h1 className="title descrip-text">{this.state.title}</h1>
+            {console.log(this.props, 'PROPSMOVIEINFO')}
             <h2 className="descrip-text small">{this.state.tagline}</h2>
-            <Rating movieId={this.state.id} userId={this.props.userId}/>
+            <Rating getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating}
             </p>

@@ -5,12 +5,15 @@ import './Movies.scss'
 import PropTypes from 'prop-types'
 
 class Movies extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      allMovies: []
+      allMovies: [],
+      userRatings: []
     }
   }
+
+
 
   componentDidMount() {
     fetchAllMovies()
@@ -22,8 +25,14 @@ class Movies extends Component {
     this.setState({allMovies: data})
   }
 
+  componentDidUpdate = (prevProps) => {
+    if(prevProps !== this.props) {
+      this.setState({userRatings: this.props.userRatings})
+    }
+  }
+
   displayAllMovies() {
-    if (this.state.allMovies.length) {
+    if (this.state.allMovies.length && !this.state.userRatings.length) {
       return this.state.allMovies.map(movie => {
         return <Card
           movieTitle={movie.title}
@@ -32,13 +41,29 @@ class Movies extends Component {
           movieRating={movie.average_rating}
           releaseDate={movie.release_date}
           backdrop={movie.backdrop_path}
+          userRating='Not yet rated'
+        />
+      })
+    } else {
+      return this.state.allMovies.map(movie => {
+       let userRating = this.state.userRatings.find(rating => rating.movie_id === movie.id)
+       if (userRating === undefined) {userRating = 'Nothing here yet'}
+        return <Card
+          movieTitle={movie.title}
+          movieId={movie.id}
+          moviePoster={movie.poster_path}
+          movieRating={movie.average_rating}
+          releaseDate={movie.release_date}
+          backdrop={movie.backdrop_path}
+          userRating={userRating.rating}
         />
       })
     }
   }
 
+  
 
-  render() {
+  render = () => {
     let moviesDisplay = this.displayAllMovies();
     return (
       <section className="movies-container" placeholder="mov-card">
