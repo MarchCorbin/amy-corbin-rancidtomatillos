@@ -38,7 +38,7 @@ class Movies extends Component {
           movieTitle={movie.title}
           movieId={movie.id}
           moviePoster={movie.poster_path}
-          movieRating={movie.average_rating}
+          movieRating={movie.average_rating.toFixed(1)}
           releaseDate={movie.release_date}
           backdrop={movie.backdrop_path}
           userRating='Not yet rated'
@@ -52,7 +52,7 @@ class Movies extends Component {
           movieTitle={movie.title}
           movieId={movie.id}
           moviePoster={movie.poster_path}
-          movieRating={movie.average_rating}
+          movieRating={movie.average_rating.toFixed(1)}
           releaseDate={movie.release_date}
           backdrop={movie.backdrop_path}
           userRating={userRating.rating}
