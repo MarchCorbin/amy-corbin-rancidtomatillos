@@ -13,6 +13,9 @@ class Rating extends React.Component {
     };
   }
  
+  componentDidMount = async(nextValue) => {
+    !this.props.userRating.isString && this.setState({hasRated: true})
+  }
 
   onStarClick = async(nextValue, prevValue, name) => {
     if(this.state.hasRated){
