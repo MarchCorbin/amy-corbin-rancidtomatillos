@@ -1,9 +1,12 @@
 .headerContainer {
   display: flex;
+  // border-block: linear-gradient(180deg, hsla(131, 17%, 53%, 1) 27%, hsla(76, 83%, 65%, 0.4) 73%);
+  ;
 }
 
 .header {
   height: 10%;
+  // background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%);
   background-color: #C9F05D;
   width: auto;
   display: flex;
@@ -16,11 +19,13 @@
 
 .header-message {
   padding-left: 5em;
-  color: green;
+  color: #E60B09;
 }
 
+
+
 .title-name {
-  color: green;
+  color: #E60B09;
 }
 
 .link-name {
