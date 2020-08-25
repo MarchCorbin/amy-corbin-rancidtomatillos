@@ -8,20 +8,23 @@ class Rating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: null
+      rating: null,
+      hasRated: false
     };
   }
  
-  componentDidMount = async(nextValue) => {
-    this.props.userRating.isInteger && await this.setState({rating: this.props.userRating})
-  }
 
   onStarClick = async(nextValue, prevValue, name) => {
-    let id = this.props.movieId
-    let userId = this.props.userId
-    this.setState({rating: nextValue});
-    await postUserRating(userId, id, nextValue)
-     this.props.getUserMovieRatings()
+    if(this.state.hasRated){
+      alert('Youve already rated this movie!')
+    } else {
+      let id = this.props.movieId
+      let userId = this.props.userId
+      this.setState({rating: nextValue});
+
+      await postUserRating(userId, id, nextValue)
+       this.props.getUserMovieRatings()
+    }
   }
  
   render() {

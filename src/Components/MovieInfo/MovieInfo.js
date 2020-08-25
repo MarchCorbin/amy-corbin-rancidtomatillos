@@ -21,7 +21,7 @@ class MovieInfo extends React.Component {
       runtime: 0,
       tagline: "",
       average_rating: 0,
-      currentRating: 0
+      currentRating: null
     };
   }
 
@@ -70,8 +70,9 @@ class MovieInfo extends React.Component {
           <div className="title-container">
             <h1 className="title descrip-text">{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
-            <Rating userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
-            <p>{this.getCurrentUserRating()}</p>
+            {this.state.currentRating == 'No rating Yet' && <Rating userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>} 
+            
+            <h4>{this.getCurrentUserRating()}</h4>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating}
             </p>
