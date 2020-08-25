@@ -7,18 +7,27 @@ import { postUserRating } from '../../Api'
 class Rating extends React.Component {
   constructor(props) {
     super(props);
- 
     this.state = {
-      rating: 0
+      rating: null,
+      hasRated: false
     };
   }
  
+  componentDidMount = async(nextValue) => {
+    !this.props.userRating.isString && this.setState({hasRated: true})
+  }
+
   onStarClick = async(nextValue, prevValue, name) => {
-    let id = this.props.movieId
-    let userId = this.props.userId
-    this.setState({rating: nextValue});
-    await postUserRating(userId, id, nextValue)
-     this.props.getUserMovieRatings()
+    if(this.state.hasRated){
+      alert('Youve already rated this movie!')
+    } else {
+      let id = this.props.movieId
+      let userId = this.props.userId
+      this.setState({rating: nextValue});
+
+      await postUserRating(userId, id, nextValue)
+       this.props.getUserMovieRatings()
+    }
   }
  
   render() {
@@ -26,7 +35,7 @@ class Rating extends React.Component {
     
     return (                
       <div className="star-container">
-        <h2>User Rating: {rating}</h2>
+        <h2>Rate This Movie!</h2>
         <StarRatingComponent 
           name="rate1" 
           starCount={10}
