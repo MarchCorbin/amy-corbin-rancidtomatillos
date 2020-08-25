@@ -21,7 +21,7 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
     <p className="card-text">Avg Rating: {movieRating}</p>
     <p className="card-text">Release Date: {releaseDate}</p>
     {console.log(userRating)}
-  {userRating !== undefined ? <p>Your Rating: {userRating}</p> : <p>not yet rated</p>}
+  {userRating !== undefined ? <p className='rating-text'>Your Rating: {userRating}</p> : <p>not yet rated</p>}
     </div>
   )
 }
