@@ -35,7 +35,7 @@ class Rating extends React.Component {
     
     return (                
       <div className="star-container">
-        <h2>Rate This Movie!</h2>
+        <h2 className='descrip-text rating-text'>Rate This Movie!</h2>
         <StarRatingComponent 
           name="rate1" 
           starCount={10}

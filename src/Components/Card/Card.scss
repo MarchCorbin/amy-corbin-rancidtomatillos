@@ -3,6 +3,13 @@
   padding: 1em 1em 1em 1em;
 }
 
+.movie-poster {
+  &:hover {
+    height: 20em;
+    transition: .3s;
+  }
+}
+
 img {
   object-fit: contain;
   max-width: 20em;

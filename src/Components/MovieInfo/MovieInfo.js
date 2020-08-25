@@ -70,9 +70,11 @@ class MovieInfo extends React.Component {
           <div className="title-container">
             <h1 className="title descrip-text">{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
-            {this.state.currentRating == 'No rating Yet' && <Rating userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>} 
-            
-            <h4>{this.getCurrentUserRating()}</h4>
+             {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
+            {
+              this.props.userId !== 0 && this.state.currentRating == 'No rating Yet' && <Rating userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
+  }
+            <h4 className="descrip-text small">Your Rating: {this.getCurrentUserRating()}</h4>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating}
             </p>
