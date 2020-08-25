@@ -12,7 +12,8 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
    <Link to={{
      pathname:`/movies/${movieId}`
     }}>
-      <img 
+      <img
+        className='movie-poster' 
         id={movieId} 
         src={moviePoster} 
         alt={movieTitle}>
