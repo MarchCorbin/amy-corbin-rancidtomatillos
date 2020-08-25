@@ -71,7 +71,7 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
+          <MovieInfo  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
           />
           
           <Route exact path='/'>

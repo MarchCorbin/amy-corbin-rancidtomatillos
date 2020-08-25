@@ -9,7 +9,6 @@ class Movies extends Component {
     super(props)
     this.state = {
       allMovies: []
-// perhaps have a islogged in attribute to conditionally render on the componentdidmount
     }
   }
 

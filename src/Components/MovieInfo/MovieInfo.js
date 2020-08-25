@@ -47,7 +47,15 @@ class MovieInfo extends React.Component {
       runtime: data.runtime,
       tagline: data.tagline,
       average_rating: data.average_rating,
+      currentRating: this.getCurrentUserRating()
     });
+  }
+
+  getCurrentUserRating = () => {
+     let currentMovie =  this.props.userRatings.find(rating => {
+      return (this.state.id == rating.movie_id)
+    })
+    return currentMovie ? `Your Rating: ${currentMovie.rating}` : 'No rating Yet'
   }
 
   render() {
@@ -60,9 +68,9 @@ class MovieInfo extends React.Component {
         >
           <div className="title-container">
             <h1 className="title descrip-text">{this.state.title}</h1>
-            {console.log(this.props, 'PROPSMOVIEINFO')}
             <h2 className="descrip-text small">{this.state.tagline}</h2>
-            <Rating getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
+            <Rating getCurrentUserRating={this.getCurrentUserRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
+            <p>{this.getCurrentUserRating()}</p>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating}
             </p>
