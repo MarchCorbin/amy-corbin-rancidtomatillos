@@ -8,11 +8,13 @@ class Rating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: 0
+      rating: null
     };
   }
  
-  
+  componentDidMount = async(nextValue) => {
+    this.props.userRating.isInteger && await this.setState({rating: this.props.userRating})
+  }
 
   onStarClick = async(nextValue, prevValue, name) => {
     let id = this.props.movieId
