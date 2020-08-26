@@ -4,6 +4,7 @@ import { fetchSingleMovieDetails } from '../../Api.js'
 import Header from '../Header/Header'
 import PropTypes from 'prop-types'
 import Rating from '../Rating/Rating'
+import { deleteSingleRating, fetchUserMovieRatings } from '../../Api.js'
 
 class MovieInfo extends React.Component {
   constructor(props) {
@@ -33,6 +34,9 @@ class MovieInfo extends React.Component {
       .catch((err) => alert(err.message));
   }
 
+  updateRating = (nextValue) => {
+    this.setState({currentRating: nextValue});
+  }
 
 
   getAllData(data) {
@@ -56,7 +60,19 @@ class MovieInfo extends React.Component {
      let currentMovie =  this.props.userRatings.find(rating => {
       return (this.state.id == rating.movie_id)
     })
-    return currentMovie ? Number(currentMovie.rating) : 'No rating Yet'
+    return currentMovie ? Number(currentMovie.rating) : null
+  }
+
+
+  deleteRating = async() => {
+   let currentMovie =  this.props.userRatings.find(rating => {
+      return (this.state.id == rating.movie_id)})
+   const userId = this.props.userId
+   const reviewId = currentMovie.id
+   deleteSingleRating(userId, reviewId)
+   await fetchUserMovieRatings(userId)
+   await this.getCurrentUserRating()
+   this.setState({currentRating: null})
   }
 
   render() {
@@ -72,11 +88,13 @@ class MovieInfo extends React.Component {
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {
-              this.props.userId !== 0 && this.state.currentRating == 'No rating Yet' && <Rating userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/>
-  }
-            <h4 className="descrip-text small">Your Rating: {this.getCurrentUserRating()}</h4>
+              this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating} userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
+            }
+            {this.props.userId !== 0 && this.state.currentRating !== null && <button onClick={this.deleteRating}>Delete your Rating</button>}
+          <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
             <p className="descrip-text small">
-              Average Rating: {this.state.average_rating}
+             
+              Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
           </div>
           <div className="misc-details">

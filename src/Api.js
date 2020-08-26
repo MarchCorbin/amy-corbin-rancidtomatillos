@@ -57,3 +57,22 @@ export const postUserRating = async (userId, id, rating) => {
   .catch(err => console.log(err))
 
 }
+
+
+export const deleteSingleRating = async(userId, ratingId) => {
+  return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingId}` , {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  .catch(err => alert(err.message));
+}
+
+// export const deleteFromFavorites = async (id) => {
+//   return await fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
+//       method: 'DELETE'
+//     })
+//     .then(res => console.log(res))
+//     .catch(err => console.error(err))
+// }

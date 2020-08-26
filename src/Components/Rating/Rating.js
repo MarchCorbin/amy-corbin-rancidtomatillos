@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 import './Rating.scss'
 import { postUserRating } from '../../Api'
+
  
 class Rating extends React.Component {
   constructor(props) {
@@ -13,21 +14,18 @@ class Rating extends React.Component {
     };
   }
  
-  componentDidMount = async(nextValue) => {
-    !this.props.userRating.isString && this.setState({hasRated: true})
+  componentDidMount = () => {
+
   }
 
   onStarClick = async(nextValue, prevValue, name) => {
-    if(this.state.hasRated){
-      alert('Youve already rated this movie!')
-    } else {
       let id = this.props.movieId
       let userId = this.props.userId
       this.setState({rating: nextValue});
 
       await postUserRating(userId, id, nextValue)
+      this.props.updateRating(nextValue)
        this.props.getUserMovieRatings()
-    }
   }
  
   render() {
