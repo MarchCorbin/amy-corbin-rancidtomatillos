@@ -22,5 +22,4 @@ describe('MovieInfo Component', () => {
   const movieTitle = screen.getByTestId("movie-title");
   expect(movieTitle).toBeInTheDocument();
   })
-
 })
