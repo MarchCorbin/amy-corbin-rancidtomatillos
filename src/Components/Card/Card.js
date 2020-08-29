@@ -5,7 +5,6 @@ import { fetchSingleMovieDetails } from '../../Api.js'
 import MovieInfo from '../MovieInfo/MovieInfo'
 
 function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating}) {
-  console.log(movieTitle, 'movietitle')
   return (
     <div className = "movie-card" placeholder="mov-card">
    {movieTitle.length > 25 ? <p className='movie-titles'>{movieTitle.slice(0, 18)}...</p> : <p className='movie-titles'>{movieTitle}</p> }
