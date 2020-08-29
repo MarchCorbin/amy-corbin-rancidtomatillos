@@ -43,7 +43,6 @@ class MovieInfo extends React.Component {
     this.setState({currentRating: nextValue});
   }
 
-
   getAllData(data) {
     console.log(data, 'IAMDATA')
     this.setState({
@@ -88,9 +87,9 @@ class MovieInfo extends React.Component {
         <section
           className="back-drop"
           style={{ backgroundImage: `url(${this.state.backdrop_path})` }}
-        >
+          >
           <div className="title-container">
-            <h1 data-test-id="movie-title" className="title descrip-text">{this.state.title}</h1>
+            <h1 data-test-id="movie-title" className="title descrip-text" alt='title'>{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {
@@ -99,7 +98,6 @@ class MovieInfo extends React.Component {
             {this.props.userId !== 0 && this.state.currentRating !== null && <button onClick={this.deleteRating}>Delete your Rating</button>}
           <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
             <p className="descrip-text small">
-             
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
           </div>
