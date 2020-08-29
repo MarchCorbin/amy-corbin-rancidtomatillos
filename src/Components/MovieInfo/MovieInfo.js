@@ -38,7 +38,6 @@ class MovieInfo extends React.Component {
     this.setState({currentRating: nextValue});
   }
 
-
   getAllData(data) {
     this.setState({
       title: data.title,
@@ -82,9 +81,9 @@ class MovieInfo extends React.Component {
         <section
           className="back-drop"
           style={{ backgroundImage: `url(${this.state.backdrop_path})` }}
-        >
+          >
           <div className="title-container">
-            <h1 className="title descrip-text">{this.state.title}</h1>
+            <h1 className="title descrip-text" alt='title'>{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {
@@ -93,7 +92,6 @@ class MovieInfo extends React.Component {
             {this.props.userId !== 0 && this.state.currentRating !== null && <button onClick={this.deleteRating}>Delete your Rating</button>}
           <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
             <p className="descrip-text small">
-             
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
           </div>
@@ -116,17 +114,17 @@ class MovieInfo extends React.Component {
 
 export default MovieInfo
 
-MovieInfo.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  backdrop_path: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
-  budget: PropTypes.number.isRequired,
-  revenue: PropTypes.number.isRequired,
-  runtime: PropTypes.number.isRequired,
-  tagline: PropTypes.string.isRequired,
-  average_rating: PropTypes.number.isRequired
-}
+// MovieInfo.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   poster_path: PropTypes.string.isRequired,
+//   backdrop_path: PropTypes.string.isRequired,
+//   release_date: PropTypes.string.isRequired,
+//   overview: PropTypes.string.isRequired,
+//   genres: PropTypes.array.isRequired,
+//   budget: PropTypes.number.isRequired,
+//   revenue: PropTypes.number.isRequired,
+//   runtime: PropTypes.number.isRequired,
+//   tagline: PropTypes.string.isRequired,
+//   average_rating: PropTypes.number.isRequired
+// }
