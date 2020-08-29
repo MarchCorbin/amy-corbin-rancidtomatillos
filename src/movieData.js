@@ -33,35 +33,35 @@ export const movieData = {
 }
 
 export const movieRatings = [{
-      "id": 1939,
-      "user_id": 72,
-      "movie_id": 524047,
-      "rating": 4,
-      "created_at": "2020-08-27T22:08:50.057Z",
-      "updated_at": "2020-08-27T22:08:50.057Z"
-      },
-    {
-      "id": 1833,
-      "user_id": 72,
-      "movie_id": 606234,
-      "rating": 8,
-      "created_at": "2020-08-26T23:34:11.462Z",
-      "updated_at": "2020-08-26T23:34:11.462Z"
-    },
-    {
-      "id": 1831,
-      "user_id": 72,
-      "movie_id": 149,
-      "rating": 10,
-      "created_at": "2020-08-26T23:34:00.467Z",
-      "updated_at": "2020-08-26T23:34:00.467Z"
-    },
-      {
-        "id": 1821,
-        "user_id": 72,
-        "movie_id": 437518,
-        "rating": 5,
-        "created_at": "2020-08-26T23:19:17.106Z",
-        "updated_at": "2020-08-26T23:19:17.106Z"
-      }
-  ]
+    "id": 1939,
+    "user_id": 72,
+    "movie_id": 524047,
+    "rating": 4,
+    "created_at": "2020-08-27T22:08:50.057Z",
+    "updated_at": "2020-08-27T22:08:50.057Z"
+  },
+  {
+    "id": 1833,
+    "user_id": 72,
+    "movie_id": 606234,
+    "rating": 8,
+    "created_at": "2020-08-26T23:34:11.462Z",
+    "updated_at": "2020-08-26T23:34:11.462Z"
+  },
+  {
+    "id": 1831,
+    "user_id": 72,
+    "movie_id": 149,
+    "rating": 10,
+    "created_at": "2020-08-26T23:34:00.467Z",
+    "updated_at": "2020-08-26T23:34:00.467Z"
+  },
+  {
+    "id": 1821,
+    "user_id": 72,
+    "movie_id": 437518,
+    "rating": 5,
+    "created_at": "2020-08-26T23:19:17.106Z",
+    "updated_at": "2020-08-26T23:19:17.106Z"
+  }
+]
