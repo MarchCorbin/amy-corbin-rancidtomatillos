@@ -15,27 +15,3 @@ test('renders learn react link', () => {
   const linkElement = getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });
-
-// describe('App Component', () => {
-//   it('should display all movies', () => {
-        
-
-//     render(<App />)
-
-//     const containerHeading = screen.getByRole('heading', {name: ??})
-//  )
-//   })
-
-// })
-
-// describe(App, () => {
-//   it('it should render all cards', () => {
-
-
-
-//   })
-// })
-
-// test headers
-// test ratings
-// test how many cards get rendered to page

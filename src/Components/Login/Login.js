@@ -27,10 +27,10 @@ class Login extends React.Component {
     const loginEmail = this.state.email
     const loginPassword = this.state.password
     postLogin(loginEmail, loginPassword)
-     .then(data => this.props.setCurrentUser(data))
-       .catch(err => console.log(err))
-      .then(() => this.clearInputs())
-      .then(this.setState({isValid: true}))
+    .then(data => this.props.setCurrentUser(data))
+    .then(() => this.clearInputs())
+     .then(this.setState({isValid: true}))
+     .catch(err => console.log(err))
   }
 
 
@@ -55,8 +55,5 @@ class Login extends React.Component {
 export default Login
 
 Login.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  isValid: PropTypes.bool.isRequired
-
+  setCurrentUser: PropTypes.func.isRequired,
 }
