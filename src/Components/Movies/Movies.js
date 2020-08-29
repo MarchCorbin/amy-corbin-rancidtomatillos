@@ -12,8 +12,6 @@ class Movies extends Component {
     }
   }
 
-
-
   componentDidMount() {
     fetchAllMovies()
     .then(data => {this.setMovieState(data.movies)})
@@ -24,41 +22,23 @@ class Movies extends Component {
     this.setState({allMovies: data})
   }
 
-  componentDidUpdate = (prevProps) => {
-    if(prevProps !== this.props) {
-      this.setState({userRatings: this.props.userRatings})
-    }
-  }
-
   displayAllMovies() {
-    if (this.state.allMovies.length && !this.props.userRatings.length) {
-      return this.state.allMovies.map(movie => {
+
+    return this.state.allMovies.map(movie => {
+      let userRating = this.props.userRatings.find(rating => rating.movie_id === movie.id)
         return <Card
           movieTitle={movie.title}
+          key={movie.id}
           movieId={movie.id}
           moviePoster={movie.poster_path}
           movieRating={movie.average_rating.toFixed(1)}
           releaseDate={movie.release_date}
           backdrop={movie.backdrop_path}
-          userRating='Not yet rated'
-        />
-      })
-    } else {
-      return this.state.allMovies.map(movie => {
-       let userRating = this.props.userRatings.find(rating => rating.movie_id === movie.id)
-       if (userRating === undefined) {userRating = 'Nothing here yet'}
-        return <Card
-          movieTitle={movie.title}
-          movieId={movie.id}
-          moviePoster={movie.poster_path}
-          movieRating={movie.average_rating.toFixed(1)}
-          releaseDate={movie.release_date}
-          backdrop={movie.backdrop_path}
-          userRating={userRating.rating}
+          userRating={userRating ? userRating.rating : ''}
         />
       })
     }
-  }
+  
 
   
 

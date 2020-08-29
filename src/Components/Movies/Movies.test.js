@@ -1,59 +1,32 @@
-import MutationObserver from '@sheerun/mutationobserver-shim';
-window.MutationObserver = MutationObserver;
 import React from 'react';
-import {screen, fireEvent, render, waitFor } from '@testing-library/react';
+import {screen, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Movies from './Movies';
-import Api from '../../Api'
+import { BrowserRouter } from 'react-router-dom';
+import  { movieData, movieRatings } from '../../movieData'
+import { fetchAllMovies } from '../../Api'
 jest.mock('../../Api')
-import movieData from '../../movieData'
-import fetchAllMovies from '../../Api'
-// const fetchAllMovies = jest.fn();
-
 
 
 describe('Movie Component', () => {
-  it('should have the correct content when rendered', () => {
 
-  const movies = [
-    {
-      movieTitle: "booo",
-      movieId: 1,
-      moviePoster: "string",
-      movieRating: 1,
-      releaseDate: "1",
-      backdrop: "img"
-    },
-    {
-      movieTitle: "mooo",
-      movieId: 2,
-      moviePoster: "string",
-      movieRating: 2,
-      releaseDate: "2",
-      backdrop: "img"
-    }
-  ]
+  it('should have the correct content when rendered', async() => {
 
-  render(<Movies
-    movies={movies}
-    />
-    )
-    const movies1 = screen.getByPlaceholderText('mov-card')
-    const movies2 = screen.getByPlaceholderText('mov-card')
-    expect(movies1).toBeInTheDocument()
+    fetchAllMovies.mockResolvedValueOnce(movieData)
+    render(<BrowserRouter><Movies userRatings={movieRatings} /></BrowserRouter>);
+    const movies2 = await waitFor(() => screen.getByText("Greenland")); 
+    const movies3 = await waitFor(() => screen.getByText("Archive"))
     expect(movies2).toBeInTheDocument()
+    expect(movies3).toBeInTheDocument()
   })
-  })
 
- 
-    it('it should render all cards', async () => {
-      fetchAllMovies.mockReturnValueOnce([movieData])
 
-      render(<Movies />);
+  it('it should render all cards', () => {
+    fetchAllMovies.mockResolvedValue(movieData)
 
-      const movieNum = await waitFor(() => screen.getByText('Release'));
-      
-      expect(movieNum).toBeInTheDocument(42)
+    render(<Movies />);
 
+    const movieNum = screen.getByPlaceholderText('mov-card');
+    expect(movieNum).toBeInTheDocument()
     })
-
+})

@@ -26,8 +26,3 @@ class Header extends Component {
 }
 
 export default Header
-
-// think of brwoser history as an array
-//adding things to array when click link
-// using rrd to change path
-// console.log 
