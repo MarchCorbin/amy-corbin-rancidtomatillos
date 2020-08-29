@@ -122,17 +122,17 @@ class MovieInfo extends React.Component {
 
 export default MovieInfo
 
-MovieInfo.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  backdrop_path: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
-  budget: PropTypes.number.isRequired,
-  revenue: PropTypes.number.isRequired,
-  runtime: PropTypes.number.isRequired,
-  tagline: PropTypes.string.isRequired,
-  average_rating: PropTypes.number.isRequired
-}
+// MovieInfo.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   poster_path: PropTypes.string.isRequired,
+//   backdrop_path: PropTypes.string.isRequired,
+//   release_date: PropTypes.string.isRequired,
+//   overview: PropTypes.string.isRequired,
+//   genres: PropTypes.array.isRequired,
+//   budget: PropTypes.number.isRequired,
+//   revenue: PropTypes.number.isRequired,
+//   runtime: PropTypes.number.isRequired,
+//   tagline: PropTypes.string.isRequired,
+//   average_rating: PropTypes.number.isRequired
+// }
