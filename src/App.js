@@ -23,7 +23,6 @@ class App extends React.Component {
 setCurrentUser = async(data) => {
   this.setState({ currentUser: data.user.name, userId: data.user.id, isLoggedIn: true})
   await this.getUserMovieRatings()
-  // console.log('current', this.state.currentUser)
 }
 
 componentDidUpdate = (prevProps) => {
@@ -57,11 +56,8 @@ toggleButton = () => {
 
 
   render = () => {
-    let ratings;
-    if(this.state.userRatings.length){ratings = this.state.userRatings}
     let personalizedMessage = this.changingMessage();
     console.log(this.state.userRatings, 'thisisratings')
-
     return (
       <main>
         <BrowserRouter>
@@ -77,8 +73,6 @@ toggleButton = () => {
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Movies userRatings={this.state.userRatings} />
-          
-  
           </Route>
         </BrowserRouter>
       </main>

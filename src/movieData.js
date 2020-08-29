@@ -1,4 +1,5 @@
-export const movieData = [
+export const movieData = {
+  movies: [
   {
     "id": 524047,
     "poster_path": "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
@@ -28,8 +29,8 @@ export const movieData = [
     "average_rating": 3.3333333333333335,
     "release_date": "2020-08-15"
   }
-
 ]
+}
 
 export const movieRatings = [{
     "id": 1939,

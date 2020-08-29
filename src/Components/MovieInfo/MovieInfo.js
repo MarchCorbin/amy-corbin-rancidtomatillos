@@ -26,12 +26,17 @@ class MovieInfo extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     let movieId = this.props.match.params.id;
     this.setState({ id: movieId });
     fetchSingleMovieDetails(movieId)
-      .then((data) => this.getAllData(data.movie))
-      .catch((err) => alert(err.message));
+    .then((data) => {
+      console.log("res: ", data.movie)
+      this.getAllData(data.movie)
+    })
+    .catch((err) => console.log(err.message));
+    console.log(this.state, 'IAMSTATE')
+    console.log(this.props, 'IAMPROPS')
   }
 
   updateRating = (nextValue) => {
@@ -39,6 +44,7 @@ class MovieInfo extends React.Component {
   }
 
   getAllData(data) {
+    console.log(data, 'IAMDATA')
     this.setState({
       title: data.title,
       poster_path: data.poster_path,
@@ -83,7 +89,7 @@ class MovieInfo extends React.Component {
           style={{ backgroundImage: `url(${this.state.backdrop_path})` }}
           >
           <div className="title-container">
-            <h1 className="title descrip-text" alt='title'>{this.state.title}</h1>
+            <h1 data-test-id="movie-title" className="title descrip-text" alt='title'>{this.state.title}</h1>
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {

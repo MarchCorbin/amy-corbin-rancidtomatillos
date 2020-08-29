@@ -6,7 +6,7 @@
 .movie-poster {
   &:hover {
     height: 20em;
-    transition: .3s;
+    transition: .3s ease-in-out;
   }
 }
 
