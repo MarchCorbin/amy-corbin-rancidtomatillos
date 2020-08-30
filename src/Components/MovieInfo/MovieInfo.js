@@ -83,8 +83,10 @@ class MovieInfo extends React.Component {
   }
 
   toggleFavorite = (e) => {
-     e.target.src === favhollow ? e.target.src= favfull : e.target.src=favhollow
-    
+    let userId = this.props.userId
+    let movieId = this.state.id
+     e.target.src === favhollow ? e.target.src =favfull  : e.target.src = favhollow
+    e.target.src === favfull && this.props.addToFavorites(userId, movieId)
   }
 
   render() {

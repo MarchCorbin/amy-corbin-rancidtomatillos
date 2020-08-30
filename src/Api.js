@@ -39,6 +39,34 @@ export const postLogin = (email, password) => {
   })
 }
 
+export const postToFavorites = (movieId) => {
+return fetch('http://localhost:3001/api/v1/favorites', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    "id":movieId
+  })
+})
+.then(res => {
+  if(res.ok) {
+    return res.json()
+  } else {
+    throw alert(err => err.message)
+  }
+})
+}
+
+export const getUserFavorites = () => {
+  return fetch('http://localhost:3001/api/v1/favorites')
+  .then(res => {
+    if(res.ok) {
+      return res.json()
+    } else {
+      throw alert(err => err.message)
+    }
+  })
+}
+
 export const postUserRating = async (userId, id, rating) => {
   let movRating = parseInt(rating)
   console.log("nn", movRating)
@@ -69,10 +97,3 @@ export const deleteSingleRating = async(userId, ratingId) => {
   .catch(err => alert(err.message));
 }
 
-// export const deleteFromFavorites = async (id) => {
-//   return await fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
-//       method: 'DELETE'
-//     })
-//     .then(res => console.log(res))
-//     .catch(err => console.error(err))
-// }

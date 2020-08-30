@@ -6,7 +6,8 @@ import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
 
 import MovieInfo from './Components/MovieInfo/MovieInfo'
-import { postLogin, fetchUserMovieRatings } from './Api.js'
+import Favorites from './Components/Favorites/Favorites.js'
+import { postLogin, fetchUserMovieRatings, postToFavorites } from './Api.js'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
       currentUser: '',
       userId: 0,
       userRatings: [],
+      favorites: [],
       isLoggedIn: false
     }
   }
@@ -53,6 +55,14 @@ toggleButton = () => {
   return this.state.isLoggedIn ? <button onClick={this.logOutUser} className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
 }
 
+toggleFavButton = () => {
+  return this.state.isLoggedIn && <Link to='/favorites'><button className='fav-button'>My Favorites</button></Link>
+}
+
+addToFavorites = (userId, movieId) => {
+  postToFavorites(movieId)
+  .then(data => this.setState({favorites:data}))
+}
 
 
   render = () => {
@@ -67,11 +77,15 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
+          <MovieInfo addToFavorites={this.addToFavorites}  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
           />
-          
-          <Route exact path='/'>
+          <Route path='/favorites'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
+            <Favorites userRatings={this.state.userRatings} />
+
+          </Route>
+          <Route exact path='/'>
+            <Header toggleFavButton={this.toggleFavButton()} changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Movies userRatings={this.state.userRatings} />
           </Route>
         </BrowserRouter>
