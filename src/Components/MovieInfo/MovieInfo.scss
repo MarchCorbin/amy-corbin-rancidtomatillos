@@ -39,6 +39,21 @@
   background: rgba(50, 50, 50, 0.8);
 }
 
+.dv-star-rating {
+background: rgba(151, 151, 151, 0.3);
+}
+
 .title {
   font-size: 40px;
+}
+
+.delete-button {
+  background: transparent;
+  box-shadow: 0px 0px 2px 2px lightgoldenrodyellow;
+  height: 32px;
+  color: blanchedalmond;
+}
+
+.fav-hollow {
+  height: 3em;
 }

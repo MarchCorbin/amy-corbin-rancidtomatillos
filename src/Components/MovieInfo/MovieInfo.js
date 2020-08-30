@@ -5,6 +5,8 @@ import Header from '../Header/Header'
 import PropTypes from 'prop-types'
 import Rating from '../Rating/Rating'
 import { deleteSingleRating, fetchUserMovieRatings } from '../../Api.js'
+import favhollow from '../../Assets/favhollow.png'
+import favfull from '../../Assets/favfull.png'
 
 class MovieInfo extends React.Component {
   constructor(props) {
@@ -80,6 +82,11 @@ class MovieInfo extends React.Component {
    this.setState({currentRating: null})
   }
 
+  toggleFavorite = (e) => {
+     e.target.src === favhollow ? e.target.src= favfull : e.target.src=favhollow
+    
+  }
+
   render() {
     return (
       <main>
@@ -95,11 +102,13 @@ class MovieInfo extends React.Component {
             {
               this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating} userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
             }
-            {this.props.userId !== 0 && this.state.currentRating !== null && <button onClick={this.deleteRating}>Delete your Rating</button>}
+            {this.props.userId !== 0 && this.state.currentRating !== null && <button className='delete-button' onClick={this.deleteRating}>Delete your Rating</button>}
           <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
+          {this.props.userId !== 0 &&
+          <img onClick={this.toggleFavorite} className='fav-hollow' src={favhollow} alt="favorite" />}
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>
