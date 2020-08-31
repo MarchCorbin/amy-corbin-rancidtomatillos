@@ -1,6 +1,6 @@
 import React from 'react'
 import './MovieInfo.scss'
-import { fetchSingleMovieDetails } from '../../Api.js'
+import { fetchSingleMovieDetails, getUserFavorites } from '../../Api.js'
 import Header from '../Header/Header'
 import PropTypes from 'prop-types'
 import Rating from '../Rating/Rating'
@@ -12,7 +12,7 @@ class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      id: 0,
       title: "",
       poster_path: "",
       backdrop_path: "",
@@ -24,21 +24,22 @@ class MovieInfo extends React.Component {
       runtime: 0,
       tagline: "",
       average_rating: 0,
-      currentRating: null
+      currentRating: null,
+      isFavorite: false,
+      favorites: []
     };
   }
 
   componentDidMount = async() => {
     let movieId = this.props.match.params.id;
-    this.setState({ id: movieId });
+    await this.setState({ id: Number(movieId) });
     fetchSingleMovieDetails(movieId)
     .then((data) => {
       console.log("res: ", data.movie)
       this.getAllData(data.movie)
     })
     .catch((err) => console.log(err.message));
-    console.log(this.state, 'IAMSTATE')
-    console.log(this.props, 'IAMPROPS')
+    this.favCheck()
   }
 
   updateRating = (nextValue) => {
@@ -46,7 +47,6 @@ class MovieInfo extends React.Component {
   }
 
   getAllData(data) {
-    console.log(data, 'IAMDATA')
     this.setState({
       title: data.title,
       poster_path: data.poster_path,
@@ -82,11 +82,20 @@ class MovieInfo extends React.Component {
    this.setState({currentRating: null})
   }
 
+
+favCheck = async() => {
+  let currentMovie = this.state.id
+   await getUserFavorites()
+   .then(data => this.setState({favorites: data}))
+  this.state.favorites.includes(currentMovie) ? this.setState({isFavorite: true}) : this.setState({isFavorite: false})
+  
+}
+
   toggleFavorite = (e) => {
     let userId = this.props.userId
-    let movieId = this.state.id
-     e.target.src === favhollow ? e.target.src =favfull  : e.target.src = favhollow
-    e.target.src === favfull && this.props.addToFavorites(userId, movieId)
+    let movieId = this.state.id  
+    this.props.addToFavorites(userId, movieId)
+    this.favCheck()
   }
 
   render() {
@@ -110,7 +119,7 @@ class MovieInfo extends React.Component {
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
           {this.props.userId !== 0 &&
-          <img onClick={this.toggleFavorite} className='fav-hollow' src={favhollow} alt="favorite" />}
+          <img onClick={this.toggleFavorite} className='fav-hollow' src={this.state.isFavorite ? favfull : favhollow} alt="favorite" />}
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>

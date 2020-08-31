@@ -56,7 +56,7 @@ toggleButton = () => {
 }
 
 toggleFavButton = () => {
-  return this.state.isLoggedIn && <Link to='/favorites'><button className='fav-button'>My Favorites</button></Link>
+  return this.state.isLoggedIn && <Link className='fav-button' to='/favorites'><button className='fav-button'>My Favorites</button></Link>
 }
 
 addToFavorites = (userId, movieId) => {
