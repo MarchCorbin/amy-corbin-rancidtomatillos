@@ -41,6 +41,10 @@ class MovieInfo extends React.Component {
     .catch((err) => alert(err.message))
   }
 
+  addComment = (comment, author) => {
+    this.setState({comments: this.state.comments.concat({comment, author, movieId:this.state.id})})
+  }
+
   updateRating = (nextValue) => {
     this.setState({currentRating: nextValue});
   }
@@ -102,7 +106,7 @@ class MovieInfo extends React.Component {
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
           <CommentForm movieId={this.state.id}/>
-          <Comments comments={this.state.comments}/>
+          <Comments comments={this.state.comments} addComment={this.addComment}/>
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>
