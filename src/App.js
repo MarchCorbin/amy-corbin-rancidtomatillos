@@ -6,7 +6,8 @@ import Movies from './Components/Movies/Movies.js';
 import Login from './Components/Login/Login'
 
 import MovieInfo from './Components/MovieInfo/MovieInfo'
-import { postLogin, fetchUserMovieRatings } from './Api.js'
+import Favorites from './Components/Favorites/Favorites.js'
+import { postLogin, fetchUserMovieRatings, postToFavorites } from './Api.js'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
       currentUser: '',
       userId: 0,
       userRatings: [],
+      favorites: [],
       isLoggedIn: false
     }
   }
@@ -53,6 +55,14 @@ toggleButton = () => {
   return this.state.isLoggedIn ? <button onClick={this.logOutUser} className="login-button">Logout</button> : <Link className="login-button" to='/login'><button className="login-button">Log In</button></Link>
 }
 
+toggleFavButton = () => {
+  return this.state.isLoggedIn && <Link className='fav-button' to='/favorites'><button className='fav-button'>My Favorites</button></Link>
+}
+
+addToFavorites = async(movieId) => {
+  await postToFavorites(movieId)
+  .then(data => this.setState({favorites:data}))
+}
 
 
   render = () => {
@@ -66,11 +76,15 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} 
-          />} 
-          />          
-          <Route exact path='/'>
+          <MovieInfo addToFavorites={this.addToFavorites}  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
+          />
+          <Route path='/favorites'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
+            <Favorites userRatings={this.state.userRatings} />
+
+          </Route>
+          <Route exact path='/'>
+            <Header toggleFavButton={this.toggleFavButton()} changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Movies userRatings={this.state.userRatings} />
           </Route>
         </BrowserRouter>
@@ -79,9 +93,5 @@ toggleButton = () => {
   }
 }
 
-
-// this.changing message would have 2 tests, if stae is logged in and h2 w cuureent users name returened and isState logged in is flase straight welcome
-// dont have to call compdidm, when page renders, data should be there (like constructor)
-// mock fetch
 
 export default App;

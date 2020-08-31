@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Header.scss'
 import { Link } from 'react-router-dom'
 import durian from "../../Assets/durianlogo.png"
-import PropTypes from 'prop-types'
+
 
 class Header extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class Header extends Component {
         <section className="header-message">{this.props.changingMessage}</section>
           <Link className="link-name" to='/'><h1 className="title-name">Perished Durians</h1><img className="img-durian" alt="durian" src={durian}/></Link>
         <section className="login-b">{this.props.toggleButton}</section>
+        <section className="fav-button-stn">{this.props.toggleFavButton}</section>
         </header>
       </section>
     )
@@ -26,7 +27,3 @@ class Header extends Component {
 
 export default Header
 
-Header.propTypes = {
-  changingMessage: Proptypes.fn.isRequired,
-  toggleButton: PropTypes.fn.isRequired
-}

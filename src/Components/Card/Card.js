@@ -29,12 +29,12 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
 export default Card;
 
 Card.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  key: PropTypes.number.isRequired
-  movieId: PropTypes.number.isRequired,
-  moviePoster: PropTypes.string.isRequired,
-  movieRating: PropTypes.number.isRequired,
-  releaseDate: PropTypes.string.isRequired,
-  backdrop: PropTypes.number.isRequired,
+  movieTitle: PropTypes.string,
+  key: PropTypes.number,
+  movieId: PropTypes.number,
+  moviePoster: PropTypes.string,
+  movieRating: PropTypes.number,
+  releaseDate: PropTypes.string,
+  backdrop: PropTypes.number
 }
 

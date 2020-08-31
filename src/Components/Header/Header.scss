@@ -51,15 +51,33 @@
 }
 
 .login-button {
-  color:purple;
+  color: purple;
   background-color: transparent;
   align-self: center;
-  height: 41%;
+  height: 2em;
   margin-left: 20em;
   border-radius: 6px;
   margin: 2em;
-  box-shadow: 0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+  box-shadow: 2px 3px 17.9px rgba(58, 61, 72,  0.076);
+  width: 6em;
+}
 
+.fav-button-stn {
+  margin-top:31px;
+}
+
+.fav-button {
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 45px;
+  color: purple;
+  background-color: transparent;
+  align-self: center;
+  height: 2em;
+  margin-left: 20em;
+  border-radius: 6px;
+  margin: 2em;
+  box-shadow: 2px 3px 17.9px rgba(58, 61, 72, 0.076);
 }
 
 // .header-button {
