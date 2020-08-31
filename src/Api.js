@@ -13,6 +13,11 @@ return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieId}`)
 .then(res => res.json())
 }
 
+export const fetchComments = (movieId) => {
+return fetch(`http://localhost:3001/api/v1/movies/${movieId}/comments`)
+.then(res => res.json())
+}
+
 export const fetchUserMovieRatings = (id) => {
 return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
 .then(res => res.json())
@@ -41,7 +46,6 @@ export const postLogin = (email, password) => {
 
 export const postUserRating = async (userId, id, rating) => {
   let movRating = parseInt(rating)
-  console.log("nn", movRating)
   return await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`,
   {
     method: 'POST',
@@ -53,7 +57,6 @@ export const postUserRating = async (userId, id, rating) => {
   })
   })
   .then(res => res.json())
-  .then(data => console.log(data))
   .catch(err => console.log(err))
 
 }
@@ -69,6 +72,25 @@ export const deleteSingleRating = async(userId, ratingId) => {
   .catch(err => alert(err.message));
 }
 
+export const postComment = async (movieId, author, comment) => {
+  return await fetch(`http://localhost:3001/api/v1/movies/${movieId}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "author": author,
+      "comment": comment
+    }),
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    } else {
+      throw alert('Invalid comment, Please try again')
+    }
+  })
+}
 // export const deleteFromFavorites = async (id) => {
 //   return await fetch(`http://localhost:3001/api/v1/favorites/${id}`, {
 //       method: 'DELETE'
