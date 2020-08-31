@@ -3,14 +3,13 @@ import './Header.scss'
 import { Link } from 'react-router-dom'
 import durian from "../../Assets/durianlogo.png"
 
+
 class Header extends Component {
   constructor(props) {
     super(props)
     this.state = {
     }
   }
-
-  
 
   render() {
     return (
@@ -27,3 +26,4 @@ class Header extends Component {
 }
 
 export default Header
+

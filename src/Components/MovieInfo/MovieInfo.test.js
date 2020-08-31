@@ -4,7 +4,7 @@ import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 import MovieInfo from './MovieInfo';
 import { BrowserRouter } from 'react-router-dom';
 jest.mock('../../Api')
-import { fetchSingleMovieDetails } from '../../Api'
+import { fetchSingleMovieDetails, fetchComments } from '../../Api'
 import { movieRatings } from '../../movieData'
 
 describe('MovieInfo Component', () => {
@@ -31,6 +31,9 @@ describe('MovieInfo Component', () => {
       }
     })
 
+    fetchComments.mockResolvedValue()
+
+
     const {getByText} = render(<BrowserRouter><MovieInfo userRatings={movieRatings} {...props}/></ BrowserRouter>)
     const movieTitle = await waitFor(() => screen.getByText("Summary: A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours."
     ));
@@ -38,10 +41,6 @@ describe('MovieInfo Component', () => {
     expect(movieTitle).toBeInTheDocument();
   })
 
-
-  it.skip('should add a rating', () => {
-
-  })
 
   it.skip('should delete a rating', () => {
 

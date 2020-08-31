@@ -1,10 +1,12 @@
 import React from 'react'
 import './MovieInfo.scss'
 import { fetchSingleMovieDetails, getUserFavorites } from '../../Api.js'
-import Header from '../Header/Header'
 import PropTypes from 'prop-types'
+import Header from '../Header/Header'
+import CommentForm from '../CommentForm/CommentForm'
+import Comments from '../Comments/Comments'
 import Rating from '../Rating/Rating'
-import { deleteSingleRating, fetchUserMovieRatings } from '../../Api.js'
+import { deleteSingleRating, fetchUserMovieRatings, fetchComments } from '../../Api.js'
 import favhollow from '../../Assets/favhollow.png'
 import favfull from '../../Assets/favfull.png'
 
@@ -26,25 +28,31 @@ class MovieInfo extends React.Component {
       average_rating: 0,
       currentRating: null,
       isFavorite: false,
-      favorites: []
+      favorites: [],
+      comments: []
     };
   }
 
   componentDidMount = async() => {
-    fetchSingleMovieDetails(this.state.id)
-    .then((data) => {
-      console.log("res: ", data.movie)
-      this.getAllData(data.movie)
-    })
-    .catch((err) => console.log(err.message));
+    await fetchSingleMovieDetails(this.state.id)
+    .then((data) => this.getAllData(data.movie))
+    .catch((err) => alert(err.message));
+    await fetchComments(this.state.id)
+    .then((data) => this.setState({comments: data.comments}))
+    .then(data => console.log("dataHere", data))
+    .catch((err) => alert(err.message))
     this.favCheck()
+  }
+
+  addComment = (comment, author) => {
+    this.setState({comments: this.state.comments.concat({comment, author, movieId:this.state.id})})
   }
 
   updateRating = (nextValue) => {
     this.setState({currentRating: nextValue});
   }
 
-  getAllData(data) {
+  getAllData = (data) => {
     this.setState({
       title: data.title,
       poster_path: data.poster_path,
@@ -67,7 +75,6 @@ class MovieInfo extends React.Component {
     })
     return currentMovie ? Number(currentMovie.rating) : null
   }
-
 
   deleteRating = async() => {
    let currentMovie =  this.props.userRatings.find(rating => {
@@ -96,6 +103,7 @@ favCheck = async() => {
   }
 
   render() {
+    console.log({comments: this.state.comments})
     return (
       <main>
         <Header changingMessage={this.props.changingMessage} toggleButton={this.props.toggleButton} />
@@ -108,7 +116,7 @@ favCheck = async() => {
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {
-              this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating} userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
+              this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating}getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
             }
             {this.props.userId !== 0 && this.state.currentRating !== null && <button className='delete-button' onClick={this.deleteRating}>Delete your Rating</button>}
           <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
@@ -120,6 +128,8 @@ favCheck = async() => {
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>
+          <CommentForm movieId={this.state.id} addComment={this.addComment}/>
+          <Comments comments={this.state.comments}/>
             <h2 className="release descrip-text">
               Release Date: {this.state.release_date}
             </h2>
@@ -137,3 +147,10 @@ favCheck = async() => {
 
 export default MovieInfo
 
+MovieInfo.propTypes = {
+  userRatings: PropTypes.array.isRequired,
+  getUserMovieRatings: PropTypes.func.isRequired,
+  changingMessage: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired,
+  toggleButton: PropTypes.func.isRequired
+}

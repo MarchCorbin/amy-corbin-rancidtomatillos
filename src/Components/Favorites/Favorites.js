@@ -2,6 +2,7 @@ import React from 'react'
 import './Favorites.scss'
 import { getUserFavorites, fetchAllMovies } from '../../Api.js'
 import Card from '../Card/Card'
+import PropTypes from 'prop-types'
 
 
 class Favorites extends React.Component{
@@ -51,3 +52,7 @@ class Favorites extends React.Component{
 }
 
 export default Favorites
+
+Favorites.propTypes = {
+  userRatings: PropTypes.array
+}
