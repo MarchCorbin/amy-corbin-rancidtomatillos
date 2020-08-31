@@ -57,7 +57,6 @@ toggleButton = () => {
 
   render = () => {
     let personalizedMessage = this.changingMessage();
-    console.log(this.state.userRatings, 'thisisratings')
     return (
       <main>
         <BrowserRouter>
@@ -67,9 +66,9 @@ toggleButton = () => {
           </Route>
           <Route path='/movies/:id' 
           render={(props) =>
-          <MovieInfo  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} />} 
-          />
-          
+          <MovieInfo  userRatings={this.state.userRatings} getUserMovieRatings={this.getUserMovieRatings} changingMessage={personalizedMessage} userId={this.state.userId} toggleButton={this.toggleButton()}  {...props} 
+          />} 
+          />          
           <Route exact path='/'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Movies userRatings={this.state.userRatings} />
