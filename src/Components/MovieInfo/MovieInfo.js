@@ -2,15 +2,18 @@ import React from 'react'
 import './MovieInfo.scss'
 import { fetchSingleMovieDetails } from '../../Api.js'
 import Header from '../Header/Header'
+import CommentForm from '../CommentForm/CommentForm'
+import Comments from '../Comments/Comments'
+
 import PropTypes from 'prop-types'
 import Rating from '../Rating/Rating'
-import { deleteSingleRating, fetchUserMovieRatings } from '../../Api.js'
+import { deleteSingleRating, fetchUserMovieRatings, fetchComments } from '../../Api.js'
 
 class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      id: this.props.match.params.id,
       title: "",
       poster_path: "",
       backdrop_path: "",
@@ -22,29 +25,27 @@ class MovieInfo extends React.Component {
       runtime: 0,
       tagline: "",
       average_rating: 0,
-      currentRating: null
+      currentRating: null,
+      comments: []
     };
   }
 
   componentDidMount = async() => {
-    let movieId = this.props.match.params.id;
-    this.setState({ id: movieId });
-    fetchSingleMovieDetails(movieId)
-    .then((data) => {
-      console.log("res: ", data.movie)
-      this.getAllData(data.movie)
-    })
-    .catch((err) => console.log(err.message));
-    console.log(this.state, 'IAMSTATE')
-    console.log(this.props, 'IAMPROPS')
+    // let movieId = this.props.match.params.id;
+    // this.setState({ id: movieId });
+    await fetchSingleMovieDetails(this.state.id)
+    .then((data) => this.getAllData(data.movie))
+    .catch((err) => alert(err.message));
+    await fetchComments(this.state.id)
+    .then((data) => this.setState({comments: data.comments}))
+    .catch((err) => alert(err.message))
   }
 
   updateRating = (nextValue) => {
     this.setState({currentRating: nextValue});
   }
 
-  getAllData(data) {
-    console.log(data, 'IAMDATA')
+  getAllData = (data) => {
     this.setState({
       title: data.title,
       poster_path: data.poster_path,
@@ -68,7 +69,6 @@ class MovieInfo extends React.Component {
     return currentMovie ? Number(currentMovie.rating) : null
   }
 
-
   deleteRating = async() => {
    let currentMovie =  this.props.userRatings.find(rating => {
       return (this.state.id == rating.movie_id)})
@@ -81,6 +81,7 @@ class MovieInfo extends React.Component {
   }
 
   render() {
+    console.log({comments: this.state.comments})
     return (
       <main>
         <Header changingMessage={this.props.changingMessage} toggleButton={this.props.toggleButton} />
