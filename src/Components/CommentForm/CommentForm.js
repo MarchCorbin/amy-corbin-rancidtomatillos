@@ -50,3 +50,8 @@ class CommentForm extends Component {
 }
 
 export default CommentForm
+
+CommentForm.propTypes = {
+  movieId: PropTypes.number.isRequired,
+  addComment: PropTypes.func.isRequired
+}
