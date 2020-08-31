@@ -14,6 +14,9 @@ function Comments({comments}) {
     )
 }
 
-
-
 export default Comments
+
+Comments.propTypes = {
+  comments: PropTypes.array.isRequired,
+  
+}
