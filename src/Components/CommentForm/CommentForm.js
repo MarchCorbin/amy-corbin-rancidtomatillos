@@ -23,7 +23,13 @@ class CommentForm extends Component {
     this.setState({[inputName]: event.target.value})
   }
 
-  
+  submitComment = (e) => {
+    e.preventDefault();
+    const movieId = this.props.movieId;
+    const authorInput = this.state.author
+    const commentInput = this.state.comment
+    postComment(movieId, authorInput, commentInput)
+  }
 }
 
 export default CommentForm
