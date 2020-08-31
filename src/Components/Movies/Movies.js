@@ -39,9 +39,6 @@ class Movies extends Component {
       })
     }
   
-
-  
-
   render = () => {
     let moviesDisplay = this.displayAllMovies();
     return (
@@ -55,5 +52,5 @@ class Movies extends Component {
   export default Movies;
 
   Movies.propTypes = {
-allMovies: PropTypes.array.isRequired
+    allMovies: PropTypes.array.isRequired
   }
