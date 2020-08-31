@@ -13,7 +13,7 @@ class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.id,
+      id: Number(this.props.match.params.id),
       title: "",
       poster_path: "",
       backdrop_path: "",
@@ -38,6 +38,7 @@ class MovieInfo extends React.Component {
     .catch((err) => alert(err.message));
     await fetchComments(this.state.id)
     .then((data) => this.setState({comments: data.comments}))
+    .then(data => console.log("dataHere", data))
     .catch((err) => alert(err.message))
   }
 
@@ -98,18 +99,18 @@ class MovieInfo extends React.Component {
             <h2 className="descrip-text small">{this.state.tagline}</h2>
              {this.props.userId === 0  && <h2 className="descrip-text small">Login to Rate!</h2> }
             {
-              this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating} userRating={this.state.currentRating} getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
+              this.props.userId !== 0 && this.state.currentRating == null && <Rating updateRating={this.updateRating}getUserMovieRatings={this.props.getUserMovieRatings} movieId={this.state.id} userId={this.props.userId}/> 
             }
             {this.props.userId !== 0 && this.state.currentRating !== null && <button onClick={this.deleteRating}>Delete your Rating</button>}
           <h4 className="descrip-text small">Your Rating: {this.state.currentRating == null ? 'Not Yet Rated' : this.state.currentRating}</h4>
             <p className="descrip-text small">
               Average Rating: {this.state.average_rating.toFixed(1)}
             </p>
-          <CommentForm movieId={this.state.id} addComment={this.addComment}/>
-          <Comments comments={this.state.comments}/>
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>
+          <CommentForm movieId={this.state.id} addComment={this.addComment}/>
+          <Comments comments={this.state.comments}/>
             <h2 className="release descrip-text">
               Release Date: {this.state.release_date}
             </h2>
@@ -127,17 +128,10 @@ class MovieInfo extends React.Component {
 
 export default MovieInfo
 
-// MovieInfo.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   poster_path: PropTypes.string.isRequired,
-//   backdrop_path: PropTypes.string.isRequired,
-//   release_date: PropTypes.string.isRequired,
-//   overview: PropTypes.string.isRequired,
-//   genres: PropTypes.array.isRequired,
-//   budget: PropTypes.number.isRequired,
-//   revenue: PropTypes.number.isRequired,
-//   runtime: PropTypes.number.isRequired,
-//   tagline: PropTypes.string.isRequired,
-//   average_rating: PropTypes.number.isRequired
-// }
+MovieInfo.propTypes = {
+  userRatings: PropTypes.array.isRequired,
+  getUserMovieRatings: PropTypes.func.isRequired,
+  changingMessage: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired,
+  toggleButton: PropTypes.func.isRequired
+}
