@@ -14,7 +14,16 @@ class CommentForm extends Component {
     this.state = {
       author: '',
       comment: '',
- 
+      movieId: this.props.movieId
+    }
+  }
+
+  changeHandler = (event) => {
+    const inputName = event.target.name;
+    this.setState({[inputName]: event.target.value})
+  }
+
+  
 }
 
 export default CommentForm
