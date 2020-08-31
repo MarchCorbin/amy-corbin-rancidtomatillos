@@ -16,7 +16,7 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
         id={movieId} 
         src={moviePoster} 
         alt={movieTitle}>
-      </img> */}
+      </img>}
      </Link>
     <p className="card-text">Avg Rating: {movieRating}</p>
     <p className="card-text">Release Date: {releaseDate}</p>
