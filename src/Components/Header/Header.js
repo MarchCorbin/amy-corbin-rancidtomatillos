@@ -26,3 +26,8 @@ class Header extends Component {
 }
 
 export default Header
+
+Header.propTypes = {
+  changingMessage: Proptypes.fn.isRequired,
+  toggleButton: PropTypes.fn.isRequired
+}
