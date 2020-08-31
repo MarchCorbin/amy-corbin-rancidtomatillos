@@ -78,6 +78,8 @@ toggleButton = () => {
     );
   }
 }
+
+
 // this.changing message would have 2 tests, if stae is logged in and h2 w cuureent users name returened and isState logged in is flase straight welcome
 // dont have to call compdidm, when page renders, data should be there (like constructor)
 // mock fetch
