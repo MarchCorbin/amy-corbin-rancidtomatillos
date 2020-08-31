@@ -29,7 +29,13 @@ class CommentForm extends Component {
     const authorInput = this.state.author
     const commentInput = this.state.comment
     postComment(movieId, authorInput, commentInput)
+  
   }
+
+  clearInputs = () => {
+    this.setState({author: '', comment: ''})
+  }
+
 }
 
 export default CommentForm
