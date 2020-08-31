@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Header.scss'
 import { Link } from 'react-router-dom'
 import durian from "../../Assets/durianlogo.png"
+import PropTypes from 'prop-types'
 
 class Header extends Component {
   constructor(props) {
@@ -9,8 +10,6 @@ class Header extends Component {
     this.state = {
     }
   }
-
-  
 
   render() {
     return (
