@@ -3,6 +3,7 @@ import './Card.scss'
 import { Link } from 'react-router-dom'
 import { fetchSingleMovieDetails } from '../../Api.js'
 import MovieInfo from '../MovieInfo/MovieInfo'
+import PropTypes from 'prop-types'
 
 function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating}) {
   return (
@@ -25,6 +26,8 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
   )
 }
 
+export default Card;
+
 Card.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   key: PropTypes.number.isRequired
@@ -35,5 +38,3 @@ Card.propTypes = {
   backdrop: PropTypes.number.isRequired,
 }
 
-
-export default Card;
