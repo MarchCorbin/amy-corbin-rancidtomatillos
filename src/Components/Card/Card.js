@@ -16,13 +16,23 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
         id={movieId} 
         src={moviePoster} 
         alt={movieTitle}>
-      </img>}
+      </img>
      </Link>
     <p className="card-text">Avg Rating: {movieRating}</p>
     <p className="card-text">Release Date: {releaseDate}</p>
   {userRating !== undefined ? <p className='rating-text'>Your Rating: {userRating}</p> : <p>not yet rated</p>}
     </div>
   )
+}
+
+Card.propTypes = {
+  movieTitle: PropTypes.string.isRequired,
+  key: PropTypes.number.isRequired
+  movieId: PropTypes.number.isRequired,
+  moviePoster: PropTypes.string.isRequired,
+  movieRating: PropTypes.number.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  backdrop: PropTypes.number.isRequired,
 }
 
 
