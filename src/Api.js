@@ -13,6 +13,10 @@ return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieId}`)
 .then(res => res.json())
 }
 
+export const fetchComments = (movieId) => {
+return fetch(`http://localhost:3001/api/v1/movies/${movieId}/comments`)
+.then(res => res.json())
+}
 
 export const fetchUserMovieRatings = (id) => {
 return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
