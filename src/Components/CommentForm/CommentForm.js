@@ -29,13 +29,22 @@ class CommentForm extends Component {
     const authorInput = this.state.author
     const commentInput = this.state.comment
     postComment(movieId, authorInput, commentInput)
-  
   }
 
   clearInputs = () => {
     this.setState({author: '', comment: ''})
   }
 
+  render() {
+    return (
+      <section className="comments-container">
+        <h2>Comments section</h2>
+        <input className="author-comment" type="text" name="author"  aria-label="author-comment" placeholder="name" onChange={this.changeHandler}value={this.state.author}/>
+        <input type="text" name="comment" className="new-comment" aria-label="new-comment" placeholder="comment" onChange={this.changeHandler}value={this.state.comment}/>
+        <button className="comment-button" onClick={this.submitComment}>New Comment</button>
+      </section>
+    )
+  }
 }
 
 export default CommentForm
