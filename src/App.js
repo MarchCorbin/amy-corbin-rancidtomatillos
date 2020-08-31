@@ -59,8 +59,8 @@ toggleFavButton = () => {
   return this.state.isLoggedIn && <Link className='fav-button' to='/favorites'><button className='fav-button'>My Favorites</button></Link>
 }
 
-addToFavorites = (userId, movieId) => {
-  postToFavorites(movieId)
+addToFavorites = async(movieId) => {
+  await postToFavorites(movieId)
   .then(data => this.setState({favorites:data}))
 }
 

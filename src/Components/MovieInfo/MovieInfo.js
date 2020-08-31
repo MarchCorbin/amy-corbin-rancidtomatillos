@@ -12,7 +12,7 @@ class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+      id: Number(this.props.match.params.id),
       title: "",
       poster_path: "",
       backdrop_path: "",
@@ -31,9 +31,7 @@ class MovieInfo extends React.Component {
   }
 
   componentDidMount = async() => {
-    let movieId = this.props.match.params.id;
-    await this.setState({ id: Number(movieId) });
-    fetchSingleMovieDetails(movieId)
+    fetchSingleMovieDetails(this.state.id)
     .then((data) => {
       console.log("res: ", data.movie)
       this.getAllData(data.movie)
@@ -87,15 +85,14 @@ favCheck = async() => {
   let currentMovie = this.state.id
    await getUserFavorites()
    .then(data => this.setState({favorites: data}))
-  this.state.favorites.includes(currentMovie) ? this.setState({isFavorite: true}) : this.setState({isFavorite: false})
+  await this.state.favorites.includes(currentMovie) ? this.setState({isFavorite: true}) : this.setState({isFavorite: false})
   
 }
 
-  toggleFavorite = (e) => {
-    let userId = this.props.userId
+  toggleFavorite = async(e) => {
     let movieId = this.state.id  
-    this.props.addToFavorites(userId, movieId)
-    this.favCheck()
+    await this.props.addToFavorites(movieId)
+    await this.favCheck()
   }
 
   render() {
@@ -140,17 +137,3 @@ favCheck = async() => {
 
 export default MovieInfo
 
-// MovieInfo.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   poster_path: PropTypes.string.isRequired,
-//   backdrop_path: PropTypes.string.isRequired,
-//   release_date: PropTypes.string.isRequired,
-//   overview: PropTypes.string.isRequired,
-//   genres: PropTypes.array.isRequired,
-//   budget: PropTypes.number.isRequired,
-//   revenue: PropTypes.number.isRequired,
-//   runtime: PropTypes.number.isRequired,
-//   tagline: PropTypes.string.isRequired,
-//   average_rating: PropTypes.number.isRequired
-// }

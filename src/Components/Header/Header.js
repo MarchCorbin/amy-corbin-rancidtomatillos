@@ -19,7 +19,7 @@ class Header extends Component {
         <section className="header-message">{this.props.changingMessage}</section>
           <Link className="link-name" to='/'><h1 className="title-name">Perished Durians</h1><img className="img-durian" alt="durian" src={durian}/></Link>
         <section className="login-b">{this.props.toggleButton}</section>
-        <section className="fav-button stn">{this.props.toggleFavButton}</section>
+        <section className="fav-button-stn">{this.props.toggleFavButton}</section>
         </header>
       </section>
     )
