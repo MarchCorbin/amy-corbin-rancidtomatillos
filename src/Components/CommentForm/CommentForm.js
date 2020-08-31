@@ -29,6 +29,8 @@ class CommentForm extends Component {
     const authorInput = this.state.author
     const commentInput = this.state.comment
     postComment(movieId, authorInput, commentInput)
+    this.props.addComment(commentInput, authorInput)
+    this.clearInputs()
   }
 
   clearInputs = () => {
