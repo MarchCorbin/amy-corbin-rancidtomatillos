@@ -124,6 +124,7 @@ favCheck = async() => {
             </p>
           {this.props.userId !== 0 &&
           <img onClick={this.toggleFavorite} className='fav-hollow' src={this.state.isFavorite ? favfull : favhollow} alt="favorite" />}
+          {this.props.userId !== 0 && !this.state.isFavorite && <p className='adding-text'>add to favorites</p>}
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>

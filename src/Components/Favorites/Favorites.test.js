@@ -12,7 +12,7 @@ jest.mock('../../Api.js')
 describe('Favorites', () => {
   it('should render all of the users current favorites', async() => {
 
-    getUserFavorites.mockResolvedValue([524047, 606234])
+    getUserFavorites.mockResolvedValue([524047, 606234, 234234])
 
     fetchAllMovies.mockResolvedValue(movieData)
 
@@ -25,4 +25,6 @@ describe('Favorites', () => {
     expect(title2).toBeInTheDocument()
 
   })
+
+  
 })
