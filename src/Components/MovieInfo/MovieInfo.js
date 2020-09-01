@@ -103,7 +103,6 @@ favCheck = async() => {
   }
 
   render() {
-    console.log({comments: this.state.comments})
     return (
       <main>
         <Header changingMessage={this.props.changingMessage} toggleButton={this.props.toggleButton} />
@@ -148,9 +147,8 @@ favCheck = async() => {
 export default MovieInfo
 
 MovieInfo.propTypes = {
-  userRatings: PropTypes.array.isRequired,
-  getUserMovieRatings: PropTypes.func.isRequired,
-  changingMessage: PropTypes.func.isRequired,
-  userId: PropTypes.number.isRequired,
-  toggleButton: PropTypes.func.isRequired
-}
+  userRatings: PropTypes.array,
+  getUserMovieRatings: PropTypes.func,
+  changingMessage: PropTypes.func,
+  userId: PropTypes.number,
+  toggleButton: PropTypes.func}

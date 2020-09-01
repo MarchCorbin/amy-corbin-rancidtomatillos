@@ -7,7 +7,7 @@ import Login from './Components/Login/Login'
 
 import MovieInfo from './Components/MovieInfo/MovieInfo'
 import Favorites from './Components/Favorites/Favorites.js'
-import { postLogin, fetchUserMovieRatings, postToFavorites } from './Api.js'
+import { fetchUserMovieRatings, postToFavorites } from './Api.js'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
