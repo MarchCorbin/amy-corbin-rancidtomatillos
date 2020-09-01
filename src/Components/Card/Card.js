@@ -30,11 +30,10 @@ export default Card;
 
 Card.propTypes = {
   movieTitle: PropTypes.string,
-  key: PropTypes.number,
   movieId: PropTypes.number,
   moviePoster: PropTypes.string,
-  movieRating: PropTypes.number,
+  movieRating: PropTypes.string,
   releaseDate: PropTypes.string,
-  backdrop: PropTypes.number
+  backdrop: PropTypes.string
 }
 
