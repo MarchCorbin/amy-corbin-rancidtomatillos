@@ -2,9 +2,9 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 import MovieInfo from './MovieInfo';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 jest.mock('../../Api')
-import { fetchSingleMovieDetails, fetchComments } from '../../Api'
+import { fetchSingleMovieDetails, fetchComments, getUserFavorites, deleteSingleRating } from '../../Api'
 import { movieRatings } from '../../movieData'
 
 describe('MovieInfo Component', () => {
@@ -31,27 +31,49 @@ describe('MovieInfo Component', () => {
       }
     })
 
-    fetchComments.mockResolvedValue()
-
-
+    getUserFavorites.mockResolvedValue([524047])
+    fetchComments.mockResolvedValue({comments: ["i am comment"]})
     const {getByText} = render(<BrowserRouter><MovieInfo userRatings={movieRatings} {...props}/></ BrowserRouter>)
-    const movieTitle = await waitFor(() => screen.getByText("Summary: A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours."
+    const movieSynopsis = await waitFor(() => screen.getByText("Summary: A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours."
     ));
-
-    expect(movieTitle).toBeInTheDocument();
+    expect(movieSynopsis).toBeInTheDocument();
   })
 
 
-  it.skip('should delete a rating', () => {
+  it('should delete a rating', async () => {
+    const props = {match: {params: {id: 524047}}}
+    fetchSingleMovieDetails.mockResolvedValue({
+      movie: {
+        "id": 524047,
+        "title": "Greenland",
+        "poster_path": "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
+        "backdrop_path": "https://image.tmdb.org/t/p/original//juzEhsX92if2lJ2CSqKAI4RQswt.jpg",
+        "release_date": "2020-07-29",
+        "overview": "A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours.",
+        "genres": [
+          "Action",
+          "Science Fiction",
+          "Thriller"
+        ],
+        "budget": 0,
+        "revenue": 0,
+        "runtime": 119,
+        "tagline": "I am tagline",
+        "average_rating": 7.142857142857143
+      }
+    })
 
-    const mockRemoveIdea = jest.fn(); 
+    fetchComments.mockResolvedValue({comments: ['i am comment']})
+    getUserFavorites.mockResolvedValue([524047])
+    render(<MemoryRouter><MovieInfo userId={72} {...props} userRatings={movieRatings} /></MemoryRouter>)
 
-      // render(<MovieInfo {...props} />)
+    const tagline = await waitFor(() => screen.getByText('I am tagline'))
+    const deletebtn = await waitFor(() => screen.getByText('Delete your Rating'))
+    fireEvent.click(deletebtn)
 
-      const button = screen.getByRole('button');
-      fireEvent.click(button)
+    const afterMessage = await waitFor(() => screen.getByText("Your Rating: Not Yet Rated"))
 
-      expect(mockRemoveIdea).toBeCalledTimes(1);
-      // expect(mockRemoveIdea).toBeCalledWith(1);
+    expect(afterMessage).toBeInTheDocument()
+    expect(tagline).toBeInTheDocument()
   })
 }) 
