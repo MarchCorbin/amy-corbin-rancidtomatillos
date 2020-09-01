@@ -43,7 +43,7 @@ export default Rating;
 
 Rating.propTypes = {
   updateRating: PropTypes.func.isRequired,
-  getUserMovieRatings: PropTypes.func.isRequired,
+  getUserMovieRatings: PropTypes.func,
   movieId: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired
 }
