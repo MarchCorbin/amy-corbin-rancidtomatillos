@@ -35,6 +35,7 @@ class Movies extends Component {
           releaseDate={movie.release_date}
           backdrop={movie.backdrop_path}
           userRating={userRating ? userRating.rating : ''}
+          isLoggedIn={this.props.isLoggedIn}
         />
       })
     }

@@ -5,7 +5,7 @@ import { fetchSingleMovieDetails } from '../../Api.js'
 import MovieInfo from '../MovieInfo/MovieInfo'
 import PropTypes from 'prop-types'
 
-function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating}) {
+function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating, isLoggedIn}) {
   return (
     <div className = "movie-card" placeholder="mov-card">
    {movieTitle.length > 25 ? <p className='movie-titles'>{movieTitle.slice(0, 18)}...</p> : <p className='movie-titles'>{movieTitle}</p> }
@@ -20,8 +20,9 @@ function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backd
       </img>
      </Link>
     <p className="card-text">Avg Rating: {movieRating}</p>
-    <p className="card-text">Release Date: {releaseDate}</p>
-  {userRating !== undefined ? <p className='rating-text'>Your Rating: {userRating}</p> : <p>not yet rated</p>}
+   <p className="card-text">Release Date: {releaseDate}</p>
+  
+  {isLoggedIn && userRating !== '' && <p className='rating-text'>Your Rating: {userRating}</p> }
     </div>
   )
 }

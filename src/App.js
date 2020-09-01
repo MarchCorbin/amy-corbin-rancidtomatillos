@@ -85,7 +85,7 @@ addToFavorites = async(movieId) => {
           </Route>
           <Route exact path='/'>
             <Header toggleFavButton={this.toggleFavButton()} changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
-            <Movies userRatings={this.state.userRatings} />
+            <Movies userRatings={this.state.userRatings} isLoggedIn={this.state.isLoggedIn} />
           </Route>
         </BrowserRouter>
       </main>
