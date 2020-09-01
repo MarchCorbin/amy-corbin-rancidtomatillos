@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 import MovieInfo from './MovieInfo';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+jest.mock('../../Api')
 import { fetchSingleMovieDetails, fetchComments, getUserFavorites, deleteSingleRating } from '../../Api'
 import { movieRatings } from '../../movieData'
 jest.mock('../../Api')
@@ -32,13 +33,11 @@ describe('MovieInfo Component', () => {
       }
     })
 
-    fetchComments.mockResolvedValue({comments: ['i am comment']})
-
-
+    getUserFavorites.mockResolvedValue([524047])
+    fetchComments.mockResolvedValue({comments: ["i am comment"]})
     const {getByText} = render(<BrowserRouter><MovieInfo userRatings={movieRatings} {...props}/></ BrowserRouter>)
     const movieSynopsis = await waitFor(() => screen.getByText("Summary: A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours."
     ));
-
     expect(movieSynopsis).toBeInTheDocument();
   })
 
@@ -67,10 +66,9 @@ const props = {match: {params: {id: 524047}}}
       }
     })
 
-    fetchComments.mockResolvedValue({comments: ['i am comment']})
+fetchComments.mockResolvedValue({comments: ['i am comment']})
 
-
-      render(<MemoryRouter><MovieInfo userId={72} {...props} userRatings={movieRatings} /></MemoryRouter>)
+render(<MemoryRouter><MovieInfo userId={72} {...props} userRatings={movieRatings} /></MemoryRouter>)
 
   const tagline = await waitFor(() =>screen.getByText('I am tagline'))
   expect(tagline).toBeInTheDocument()

@@ -13,6 +13,7 @@ import favfull from '../../Assets/favfull.png'
 class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
+    console.log({match: this.props.match})
     this.state = {
       id: Number(this.props.match.params.id),
       title: "",
@@ -39,7 +40,6 @@ class MovieInfo extends React.Component {
     .catch((err) => alert(err.message));
     await fetchComments(this.state.id)
     .then((data) => this.setState({comments: data.comments}))
-    .then(data => console.log("dataHere", data))
     .catch((err) => alert(err.message))
     this.favCheck()
   }
@@ -128,8 +128,6 @@ favCheck = async() => {
           </div>
           <div className="misc-details">
             <p className="descrip-text small">Summary: {this.state.overview}</p>
-          <CommentForm movieId={this.state.id} addComment={this.addComment}/>
-          <Comments comments={this.state.comments}/>
             <h2 className="release descrip-text">
               Release Date: {this.state.release_date}
             </h2>
@@ -138,6 +136,8 @@ favCheck = async() => {
               Genres: {this.state.genres.map((gen) => gen)}
             </p>
             <p className="descrip-text small">Runtime: {this.state.runtime}</p>
+          {this.props.userId > 0 && <CommentForm movieId={this.state.id} addComment={this.addComment} />}
+          <Comments comments={this.state.comments}/>
           </div>
         </section>
       </main>
@@ -152,4 +152,5 @@ MovieInfo.propTypes = {
   getUserMovieRatings: PropTypes.func,
   changingMessage: PropTypes.func,
   userId: PropTypes.number,
-  toggleButton: PropTypes.func}
+  toggleButton: PropTypes.func
+}
