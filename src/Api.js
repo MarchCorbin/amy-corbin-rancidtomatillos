@@ -85,7 +85,7 @@ export const postUserRating = async (userId, id, rating) => {
   })
   })
   .then(res => res.json())
-  .catch(err => console.log(err))
+  .catch(err => (err))
 
 }
 

@@ -3,7 +3,6 @@ import './Header.scss'
 import { Link } from 'react-router-dom'
 import durian from "../../Assets/durianlogo.png"
 
-
 class Header extends Component {
   constructor(props) {
     super(props)

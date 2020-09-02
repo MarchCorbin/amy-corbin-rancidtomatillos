@@ -13,7 +13,6 @@ import favfull from '../../Assets/favfull.png'
 class MovieInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log({match: this.props.match})
     this.state = {
       id: Number(this.props.match.params.id),
       title: "",
@@ -92,7 +91,7 @@ favCheck = async() => {
   let currentMovie = this.state.id
    await getUserFavorites()
    .then(data => this.setState({favorites: data}))
-  await this.state.favorites.includes(currentMovie) ? this.setState({isFavorite: true}) : this.setState({isFavorite: false})
+    await this.state.favorites.includes(currentMovie) ? this.setState({isFavorite: true}) : this.setState({isFavorite: false})
   
 }
 
@@ -136,8 +135,8 @@ favCheck = async() => {
               Genres: {this.state.genres.map((gen) => gen)}
             </p>
             <p className="descrip-text small">Runtime: {this.state.runtime}</p>
-          {this.props.userId > 0 && <CommentForm movieId={this.state.id} addComment={this.addComment} />}
-          <Comments comments={this.state.comments}/>
+             {this.props.userId > 0 && <CommentForm movieId={this.state.id} addComment={this.addComment} />}
+             <Comments comments={this.state.comments}/>
           </div>
         </section>
       </main>
