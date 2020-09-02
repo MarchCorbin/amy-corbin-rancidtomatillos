@@ -8,7 +8,7 @@
 👤 **Amy Karnaze**
 - Github: [amykarnaze](https://github.com/amykarnaze/bon-appetit/commits?author=relyt4me)
 
-![logo](/Assets/durianlogo.png)
+![logo](src/Assets/durianlogo.png)
 
 ### Abstract
 
