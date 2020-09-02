@@ -6,10 +6,12 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 jest.mock('../../Api')
 import { fetchSingleMovieDetails, fetchComments, getUserFavorites, deleteSingleRating } from '../../Api'
 import { movieRatings } from '../../movieData'
+jest.mock('../../Api')
 
 describe('MovieInfo Component', () => {
   it('should have the correct content when rendered', async () => {
     const props = {match: {params: {id: 524047}}}
+    getUserFavorites.mockResolvedValue([524047])
     fetchSingleMovieDetails.mockResolvedValue({ 
       movie : {
         "id": 524047,
@@ -40,10 +42,11 @@ describe('MovieInfo Component', () => {
   })
 
 
-  it('should delete a rating', async () => {
-    const props = {match: {params: {id: 524047}}}
-    fetchSingleMovieDetails.mockResolvedValue({
-      movie: {
+  it('should delete a rating', async() => {
+getUserFavorites.mockResolvedValue([524047])
+const props = {match: {params: {id: 524047}}}
+    fetchSingleMovieDetails.mockResolvedValue({ 
+      movie : {
         "id": 524047,
         "title": "Greenland",
         "poster_path": "https://image.tmdb.org/t/p/original//sA154deR0X51EcR2lm2FfDczryg.jpg",
@@ -63,17 +66,16 @@ describe('MovieInfo Component', () => {
       }
     })
 
-    fetchComments.mockResolvedValue({comments: ['i am comment']})
-    getUserFavorites.mockResolvedValue([524047])
-    render(<MemoryRouter><MovieInfo userId={72} {...props} userRatings={movieRatings} /></MemoryRouter>)
+fetchComments.mockResolvedValue({comments: ['i am comment']})
 
-    const tagline = await waitFor(() => screen.getByText('I am tagline'))
-    const deletebtn = await waitFor(() => screen.getByText('Delete your Rating'))
-    fireEvent.click(deletebtn)
+render(<MemoryRouter><MovieInfo userId={72} {...props} userRatings={movieRatings} /></MemoryRouter>)
 
-    const afterMessage = await waitFor(() => screen.getByText("Your Rating: Not Yet Rated"))
-
-    expect(afterMessage).toBeInTheDocument()
-    expect(tagline).toBeInTheDocument()
-  })
-}) 
+  const tagline = await waitFor(() =>screen.getByText('I am tagline'))
+  expect(tagline).toBeInTheDocument()
+   const deletebtn = await waitFor(() => screen.getByText('Delete your Rating'))
+   expect(deletebtn).toBeInTheDocument()
+   fireEvent.click(deletebtn)
+   const afterMessage = await waitFor(() => screen.getByText('Your Rating: Not Yet Rated'))
+   expect(afterMessage).toBeInTheDocument()
+  }) 
+})

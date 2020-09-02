@@ -4,4 +4,7 @@ img {
 
 .movies-container {
   background: linear-gradient(180deg, hsla(76, 83%, 65%, 0.4) 0%, hsla(256, 73%, 63%, 1) 16%);
+  display: flex;
+  flex-flow: wrap;
+      
 }
