@@ -10,7 +10,7 @@
 
 ### Abstract
 
-This fun and spoky movie application mimics the well known rotten tomatoes website. Users are able to view movies and there corresponding movie information. It encourages individuals to create accounts so they can comment, favorite, and rate any movie they loved or would not recommend.
+This fun and spooky movie application mimics the well known rotten tomatoes website. Users are able to view movies and there corresponding movie information. Individuals are encouraged to create accounts so they can comment, favorite, and rate any movie they love or would not recommend.
 
 Any user can view movie stats:<br />
 ![homepage](https://media.giphy.com/media/hTJF0gJtHlxSc4JVJO/giphy.gif)
