@@ -1,8 +1,6 @@
 import React from 'react'
 import './Card.scss'
 import { Link } from 'react-router-dom'
-import { fetchSingleMovieDetails } from '../../Api.js'
-import MovieInfo from '../MovieInfo/MovieInfo'
 import PropTypes from 'prop-types'
 
 function Card({movieTitle, movieId, moviePoster, movieRating, releaseDate, backdrop, userRating, isLoggedIn}) {

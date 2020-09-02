@@ -30,7 +30,7 @@ class Login extends React.Component {
     .then(data => this.props.setCurrentUser(data))
     .then(() => this.clearInputs())
      .then(this.setState({isValid: true}))
-     .catch(err => console.log(err))
+     .catch(err => alert(err.message))
   }
 
 
