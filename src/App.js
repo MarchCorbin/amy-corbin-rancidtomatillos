@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './Components/Header/Header.js';
 import Movies from './Components/Movies/Movies.js';
@@ -7,7 +6,7 @@ import Login from './Components/Login/Login'
 
 import MovieInfo from './Components/MovieInfo/MovieInfo'
 import Favorites from './Components/Favorites/Favorites.js'
-import { postLogin, fetchUserMovieRatings, postToFavorites } from './Api.js'
+import { fetchUserMovieRatings, postToFavorites } from './Api.js'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
@@ -45,7 +44,6 @@ changingMessage = () => {
   }
 }
 
-
 logOutUser = () => {
   this.state.isLoggedIn &&
   this.setState({currentUser:'', userId: 0, userRatings:[], isLoggedIn: false})
@@ -64,7 +62,6 @@ addToFavorites = async(movieId) => {
   .then(data => this.setState({favorites:data}))
 }
 
-
   render = () => {
     let personalizedMessage = this.changingMessage();
     return (
@@ -81,7 +78,6 @@ addToFavorites = async(movieId) => {
           <Route path='/favorites'>
             <Header changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />
             <Favorites userRatings={this.state.userRatings} />
-
           </Route>
           <Route exact path='/'>
             <Header toggleFavButton={this.toggleFavButton()} changingMessage={personalizedMessage} toggleButton={this.toggleButton()} />

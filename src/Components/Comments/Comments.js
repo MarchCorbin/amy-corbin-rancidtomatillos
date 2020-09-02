@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Comments.scss'
-import { fetchComments } from '../../Api.js'
 import PropTypes from 'prop-types'
 
 function Comments({comments}) {

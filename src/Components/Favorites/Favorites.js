@@ -40,15 +40,11 @@ class Favorites extends React.Component{
 
 }
 
-
-
-
   render() {
     return <section className="fav-display">
       {this.displayFavorites()}
     </section>
   }
-
 }
 
 export default Favorites
